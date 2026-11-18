@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Roblox Cerdas 3D - Multiplayer Matematika Kelas 9 (Bilangan & Aljabar)</title>
+  <title>Roblox Cerdas 3D - Multiplayer Petualangan Matematika</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -406,6 +406,18 @@
       gap: 8px;
       padding: 12px 16px;
       min-width: 280px;
+      transition: all 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      overflow: hidden;
+    }
+
+    .party-scoreboard.minimized {
+      min-width: 215px;
+      padding: 8px 12px;
+      gap: 0;
+    }
+
+    .party-scoreboard.minimized .party-collapsible {
+      display: none !important;
     }
 
     .turn-banner {
@@ -413,10 +425,12 @@
       align-items: center;
       justify-content: space-between;
       background: linear-gradient(90deg, #4F46E5, #7C3AED);
-      padding: 6px 12px;
+      padding: 7px 12px;
       border-radius: 10px;
       font-size: 12px;
       font-weight: 900;
+      cursor: pointer;
+      gap: 8px;
     }
 
     .party-grid {
@@ -882,7 +896,7 @@
       background: rgba(15, 23, 42, 0.6);
       padding: 10px 16px;
       border-radius: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       font-weight: 800;
     }
 
@@ -898,6 +912,79 @@
       animation: pulse 1s infinite;
     }
 
+    .timer-badge.paused {
+      background: #0284C7;
+      border: 1.5px solid #7DD3FC;
+      color: #E0F2FE;
+    }
+
+    /* Kotak Wacana Apersepsi & Ilustrasi Gambar Soal */
+    .apersepsi-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.95));
+      border: 1.5px solid rgba(56, 189, 248, 0.45);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .apersepsi-visual {
+      width: 112px;
+      height: 84px;
+      flex-shrink: 0;
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 4px;
+    }
+
+    .apersepsi-visual svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .apersepsi-content {
+      flex: 1;
+      text-align: left;
+    }
+
+    .apersepsi-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.2);
+      color: #7DD3FC;
+      font-size: 10.5px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .apersepsi-text {
+      font-size: 12.5px;
+      color: #CBD5E1;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    @media (max-width: 560px) {
+      .apersepsi-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .apersepsi-visual {
+        width: 100%;
+        height: 92px;
+      }
+    }
+
     .question-box {
       font-size: 16px;
       font-weight: 800;
@@ -910,53 +997,66 @@
       border-left: 4px solid #F59E0B;
     }
 
-    /* Tombol & Kartu Pelajari Contoh Serupa */
-    .learn-btn {
-      background: linear-gradient(135deg, #0284C7, #0369A1);
-      color: #E0F2FE;
-      border: 1.5px solid #38BDF8;
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 14px;
+    /* Tombol & Kartu Pelajari Cara Mengerjakan */
+    .study-helper-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .btn-study-helper {
+      background: linear-gradient(135deg, #0284C7, #0369A1);
+      border: 2px solid #7DD3FC;
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
       transition: all 0.2s;
     }
 
-    .learn-btn:hover {
-      background: linear-gradient(135deg, #0369A1, #075985);
-      transform: translateY(-1px);
+    .btn-study-helper:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #0369A1, #1D4ED8);
     }
 
-    .learn-card {
-      background: rgba(15, 23, 42, 0.92);
+    .study-example-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 58, 138, 0.85));
       border: 2px dashed #38BDF8;
-      border-radius: 12px;
-      padding: 14px 16px;
+      border-radius: 14px;
+      padding: 14px 18px;
       margin-bottom: 16px;
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: #E2E8F0;
       display: none;
+      animation: fadeIn 0.25s ease;
     }
 
-    .learn-card-title {
-      color: #38BDF8;
-      font-weight: 900;
+    .study-example-title {
       font-size: 13px;
+      font-weight: 900;
+      color: #FDE047;
       margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    }
+
+    .study-example-body {
+      font-size: 13.5px;
+      color: #E2E8F0;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .answers-grid {
@@ -1286,10 +1386,10 @@
   <!-- LAYAR GABUNG KODE ROOM & PENDAFTARAN MULTIPLAYER -->
   <div id="registration-overlay">
     <div class="reg-card">
-      <div class="reg-badge">🌐 Personal &amp; Join Team &bull; Matematika Kelas 9 &bull; E-Certificate</div>
-      <h1 class="reg-title">Petualangan Matematika 3D: Bilangan &amp; Aljabar</h1>
+      <div class="reg-badge">🌐 Personal &amp; Join Team &bull; Matematika Dasar &bull; E-Certificate</div>
+      <h1 class="reg-title">Petualangan Matematika 3D</h1>
       <p class="reg-desc">
-        Pilih mode <strong>Bermain Personal</strong> untuk berlatih mandiri, atau pilih <strong>Join Team</strong> dengan memasukkan <strong>Kode Tim/Kelas</strong> yang sama agar bertemu dalam satu dunia 3D, mempelajari contoh pengerjaan soal Bilangan &amp; Aljabar Kelas 9, dan meraih <strong>Sertifikat Juara! 🏆</strong>
+        Kuasai <strong>Penjumlahan, Pengurangan, Perkalian, &amp; Pembagian</strong>! Pilih mode <strong>Bermain Personal</strong> atau <strong>Join Team</strong> dengan <strong>Kode Tim/Kelas</strong> yang sama. Dilengkapi tombol <strong>💡 Pelajari</strong> berisi contoh cara menghitung agar kamu bisa menjawab dengan tepat dan meraih <strong>Sertifikat Juara! 🏆</strong>
       </p>
 
       <!-- Menu Pilihan Mode Permainan: Personal vs Join Team vs Guru -->
@@ -1326,7 +1426,7 @@
             <span id="room-code-label">🔑 Masukkan Kode Join Team / Kelas</span>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
-            <input type="text" class="player-input-field" id="input-room-code" value="MATEMATIKA9" maxlength="12" placeholder="Ketik Kode Tim..." style="text-transform:uppercase; color:#FBBF24; letter-spacing:1.5px; cursor:text;" title="Masukkan Kode yang sama dengan temanmu untuk bertemu di game yang sama">
+            <input type="text" class="player-input-field" id="input-room-code" value="MATEMATIKA1" maxlength="12" placeholder="Ketik Kode Tim..." style="text-transform:uppercase; color:#FBBF24; letter-spacing:1.5px; cursor:text;" title="Masukkan Kode yang sama dengan temanmu untuk bertemu di game yang sama">
             <button type="button" id="btn-gen-code" onclick="generateNewRoomCode()" style="display:none; background:#4F46E5; color:#fff; border:none; padding:6px 10px; border-radius:8px; font-weight:800; font-size:11px; cursor:pointer; white-space:nowrap;">🎲 Acak Kode</button>
           </div>
         </div>
@@ -1361,20 +1461,23 @@
   <!-- HUD Layer -->
   <div id="hud">
     <div class="hud-top">
-      <!-- Papan Skor Online Real-Time & Info Ruangan -->
-      <div class="glass-card party-scoreboard interactive">
-        <div class="turn-banner">
-          <span>🌐 Kode Kelas: <strong id="hud-room-code" style="color:#FDE68A; letter-spacing:1px;">MATEMATIKA9</strong></span>
-          <span id="hud-online-count" style="font-size:11px; background:rgba(16,185,129,0.3); padding:2px 8px; border-radius:8px; border:1px solid #34D399;">🟢 1 Online</span>
+      <!-- Papan Skor Online Real-Time & Info Ruangan (Bisa Diminimize seperti Chat) -->
+      <div class="glass-card party-scoreboard interactive" id="party-scoreboard-widget">
+        <div class="turn-banner" onclick="toggleScoreboardWidget()" title="Klik untuk Minimize / Buka Daftar Pemain">
+          <span>🌐 Kelas: <strong id="hud-room-code" style="color:#FDE68A; letter-spacing:1px;">MATEMATIKA1</strong></span>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span id="hud-online-count" style="font-size:11px; background:rgba(16,185,129,0.3); padding:2px 8px; border-radius:8px; border:1px solid #34D399;">🟢 1 Online</span>
+            <span id="scoreboard-toggle-icon" style="font-size:12px; color:#E2E8F0;">▼</span>
+          </div>
         </div>
-        <div style="font-size:11px; color:#A5B4FC; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
+        <div class="party-collapsible" style="font-size:11px; color:#A5B4FC; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
           <span id="hud-my-stats">⭐ LVL 1 &bull; 0 Poin</span>
           <span id="hud-net-status" style="font-size:10px; color:#34D399;">📡 Live Sync Aktif</span>
         </div>
-        <div style="font-size:10px; color:#94a3b8; margin-top:-2px;">
-          💡 <em>Klik nama teman di bawah untuk menghampiri posisinya:</em>
+        <div class="party-collapsible" style="font-size:10px; color:#94a3b8; margin-top:-2px;">
+          💡 <em>Klik nama teman untuk menghampiri, atau klik header untuk minimize:</em>
         </div>
-        <div class="party-grid" id="hud-party-grid">
+        <div class="party-grid party-collapsible" id="hud-party-grid">
           <!-- Daftar pemain online dirender real-time -->
         </div>
       </div>
@@ -1403,17 +1506,17 @@
     <!-- WIDGET LIVE CHAT KELAS REAL-TIME -->
     <div id="chat-widget" class="glass-card interactive">
       <div class="chat-header" onclick="toggleChatWidget()">
-        <span>💬 Live Chat Kelas (<span id="chat-room-badge">MATEMATIKA9</span>)</span>
+        <span>💬 Live Chat Kelas (<span id="chat-room-badge">MATEMATIKA1</span>)</span>
         <span id="chat-toggle-icon" style="font-size:14px;">▼</span>
       </div>
       <div class="chat-messages" id="chat-messages-box">
         <div class="chat-msg-item">
           <span class="chat-msg-sender">Sistem:</span>
-          <span>Selamat datang di Dunia Matematika Kelas 9! Gunakan tombol 💡 Pelajari di dalam kuis untuk melihat contoh cara mengerjakan soal.</span>
+          <span>Selamat datang di Dunia Matematika! Gunakan kolom chat ini atau tombol 🎙️ BICARA untuk berdiskusi cara berhitung dengan teman sekelas.</span>
         </div>
       </div>
       <div class="chat-input-row">
-        <input type="text" id="chat-input-text" class="chat-input-field" placeholder="Diskusikan rumus / cara hitung..." maxlength="100" onkeydown="if(event.key==='Enter'){ event.stopPropagation(); sendChatMessage(); }">
+        <input type="text" id="chat-input-text" class="chat-input-field" placeholder="Ketik pesan / diskusi berhitung..." maxlength="100" onkeydown="if(event.key==='Enter'){ event.stopPropagation(); sendChatMessage(); }">
         <button type="button" class="chat-send-btn" onclick="sendChatMessage()">Kirim</button>
       </div>
     </div>
@@ -1421,12 +1524,12 @@
     <!-- Tombol Interaksi Muncul Saat Dekat Objek -->
     <div id="interact-prompt" onclick="triggerCurrentInteraction()">
       <span class="key-badge">SENTUH / E</span>
-      <span id="interact-text">Buka Pos Matematika</span>
+      <span id="interact-text">Buka Tantangan Matematika</span>
     </div>
 
     <!-- Petunjuk Sentuh Tanah / Layar -->
     <div class="tap-hint-pill">
-      👆 Sentuh jalan untuk bergerak &bull; 💡 Klik <strong>Pelajari Cara Mengerjakan</strong> saat menjawab soal!
+      👆 Sentuh jalan untuk bergerak &bull; 💡 Klik tombol <strong>Pelajari</strong> saat kuis untuk melihat contoh cara menghitung!
     </div>
 
     <!-- Kontrol Layar Sentuh Universal (HP, Layar IFP & Laptop) -->
@@ -1476,7 +1579,7 @@
 
     <!-- Footnote -->
     <div class="hud-footnote">
-      Roblox Cerdas 3D: Matematika Kelas 9 (Bilangan &amp; Aljabar) &bull; Dikembangkan oleh <span>Mingga Ria Hadi</span> &bull; Live Voice &amp; Certificate
+      Roblox Cerdas 3D: Petualangan Matematika &bull; Dikembangkan oleh <span>Mingga Ria Hadi</span> &bull; Live Voice &amp; Certificate
     </div>
   </div>
 
@@ -1487,22 +1590,22 @@
         <div class="modal-title-group">
           <div class="modal-icon" id="building-modal-icon">🏛️</div>
           <div>
-            <div class="modal-title" id="building-modal-title">Pos Matematika Kelas 9</div>
-            <div class="modal-subtitle">Tantangan Bilangan Berpangkat, Bentuk Akar &amp; Aljabar</div>
+            <div class="modal-title" id="building-modal-title">Pos Matematika</div>
+            <div class="modal-subtitle">Tantangan Berhitung Penjumlahan, Pengurangan, Perkalian &amp; Pembagian</div>
           </div>
         </div>
         <button class="btn-close" onclick="closeModal('modal-building')">&times;</button>
       </div>
       <div class="modal-body">
         <div class="tab-bar">
-          <button class="tab-btn active" id="tab-btn-materi" onclick="switchBuildingTab('materi')">📖 Konsep &amp; Rumus</button>
-          <button class="tab-btn" id="tab-btn-kuis" onclick="switchBuildingTab('kuis')">⚔️ Tantangan Soal</button>
+          <button class="tab-btn active" id="tab-btn-materi" onclick="switchBuildingTab('materi')">📖 Panduan Materi</button>
+          <button class="tab-btn" id="tab-btn-kuis" onclick="switchBuildingTab('kuis')">⚔️ Tantangan Berhitung</button>
         </div>
 
         <!-- Konten Tab 1: Materi -->
         <div id="tab-content-materi">
           <div style="background: rgba(15,23,42,0.7); padding: 18px; border-radius: 12px; margin-bottom: 18px; line-height: 1.65; font-size: 14px;" id="materi-text">
-            Materi Matematika Kelas 9 akan dimuat di sini...
+            Materi Matematika akan dimuat di sini...
           </div>
           <button class="primary-btn" onclick="startBuildingQuiz()">Mulai Tantangan Kuis Sekarang!</button>
         </div>
@@ -1515,19 +1618,35 @@
           </div>
 
           <div class="quiz-stats">
-            <div style="color:#34D399; font-size:13px;">Poin Benar: +25 Poin</div>
-            <div class="timer-badge" id="quiz-timer">⏱️ 45s</div>
+            <div style="color:#34D399; font-size:13px;">Poin Benar: +25 Poin &bull; Lewat Waktu: 0 Poin</div>
+            <div class="timer-badge" id="quiz-timer">⏱️ 60s</div>
+          </div>
+
+          <!-- Wacana Apersepsi & Ilustrasi Gambar Soal -->
+          <div class="apersepsi-card" id="quiz-apersepsi-box">
+            <div class="apersepsi-visual" id="quiz-apersepsi-svg"></div>
+            <div class="apersepsi-content">
+              <div class="apersepsi-badge">📖 Wacana Apersepsi &amp; Ilustrasi</div>
+              <div class="apersepsi-text" id="quiz-apersepsi-text">Memuat cerita pengantar...</div>
+            </div>
           </div>
 
           <div class="question-box" id="quiz-question">Pertanyaan kuis akan dimuat di sini...</div>
-          
-          <!-- Tombol Pelajari Cara Mengerjakan (Contoh Serupa) -->
-          <button type="button" class="learn-btn" id="btn-quiz-learn" onclick="toggleQuizLearn()">
-            <span>💡</span> <span id="btn-quiz-learn-label">Pelajari Cara Mengerjakan (Contoh Serupa)</span>
-          </button>
-          <div class="learn-card" id="quiz-learn-box">
-            <div class="learn-card-title">📖 Contoh Soal Serupa &amp; Langkah Penyelesaian:</div>
-            <div id="quiz-learn-text"></div>
+
+          <!-- Tombol Pelajari & Kotak Contoh Serupa -->
+          <div class="study-helper-bar" id="quiz-study-bar">
+            <button type="button" class="btn-study-helper" id="btn-quiz-study-toggle" onclick="toggleQuizStudyCard()">
+              <span>💡 Pelajari Cara Mengerjakan (Waktu Dijeda Saat Dibuka)</span>
+            </button>
+            <span id="quiz-study-hint-label" style="font-size:11px; color:#7DD3FC; font-weight:700;">⏸️ Waktu berhenti saat belajar</span>
+          </div>
+
+          <div class="study-example-card" id="quiz-study-card">
+            <div class="study-example-title" style="justify-content: space-between;">
+              <span>📘 Contoh Cara Mengerjakan (Angka Berbeda, Tujuan Sama):</span>
+              <button type="button" onclick="toggleQuizStudyCard()" style="background:#0284C7; color:#fff; border:none; border-radius:6px; padding:3px 9px; font-size:11px; font-weight:800; cursor:pointer;">Tutup &amp; Lanjut Waktu ▶️</button>
+            </div>
+            <div class="study-example-body" id="quiz-study-text"></div>
           </div>
 
           <div class="answers-grid" id="quiz-options"></div>
@@ -1561,26 +1680,42 @@
         <div class="modal-title-group">
           <div class="modal-icon">📜</div>
           <div>
-            <div class="modal-title">Gulungan Rumus &amp; Soal Ditemukan!</div>
-            <div class="modal-subtitle">Gunakan tombol Pelajari jika butuh contoh cara menghitung (+30 Poin)</div>
+            <div class="modal-title">Gulungan Angka Misterius Ditemukan!</div>
+            <div class="modal-subtitle">Jawab dalam 60 detik untuk meraih +30 Poin Petualang</div>
           </div>
         </div>
         <button class="btn-close" onclick="closeModal('modal-scroll')">&times;</button>
       </div>
       <div class="modal-body">
         <div class="quiz-turn-banner">
-          <span>🎯 Penemu Gulungan: <strong id="scroll-player-name" style="color:#FDE68A;">Petualang</strong></span>
-          <span style="color:#34D399;">Hadiah: +30 Poin</span>
+          <span>🎯 Penemu: <strong id="scroll-player-name" style="color:#FDE68A;">Petualang</strong></span>
+          <span class="timer-badge" id="scroll-timer">⏱️ 60s</span>
         </div>
+
+        <!-- Wacana Apersepsi & Ilustrasi Gambar Gulungan -->
+        <div class="apersepsi-card" id="scroll-apersepsi-box">
+          <div class="apersepsi-visual" id="scroll-apersepsi-svg"></div>
+          <div class="apersepsi-content">
+            <div class="apersepsi-badge">📖 Wacana Apersepsi &amp; Ilustrasi</div>
+            <div class="apersepsi-text" id="scroll-apersepsi-text">Memuat cerita pengantar...</div>
+          </div>
+        </div>
+
         <div class="question-box" id="scroll-question">Pertanyaan gulungan...</div>
 
         <!-- Tombol Pelajari untuk Gulungan -->
-        <button type="button" class="learn-btn" id="btn-scroll-learn" onclick="toggleScrollLearn()">
-          <span>💡</span> <span id="btn-scroll-learn-label">Pelajari Cara Mengerjakan (Contoh Serupa)</span>
-        </button>
-        <div class="learn-card" id="scroll-learn-box">
-          <div class="learn-card-title">📖 Contoh Soal Serupa &amp; Langkah Penyelesaian:</div>
-          <div id="scroll-learn-text"></div>
+        <div class="study-helper-bar">
+          <button type="button" class="btn-study-helper" id="btn-scroll-study-toggle" onclick="toggleScrollStudyCard()">
+            <span>💡 Pelajari Cara Mengerjakan (Waktu Dijeda Saat Dibuka)</span>
+          </button>
+          <span id="scroll-study-hint-label" style="font-size:11px; color:#7DD3FC; font-weight:700;">⏸️ Waktu berhenti saat belajar</span>
+        </div>
+        <div class="study-example-card" id="scroll-study-card">
+          <div class="study-example-title" style="justify-content: space-between;">
+            <span>📘 Contoh Cara Mengerjakan (Angka Berbeda, Tujuan Sama):</span>
+            <button type="button" onclick="toggleScrollStudyCard()" style="background:#0284C7; color:#fff; border:none; border-radius:6px; padding:3px 9px; font-size:11px; font-weight:800; cursor:pointer;">Tutup &amp; Lanjut Waktu ▶️</button>
+          </div>
+          <div class="study-example-body" id="scroll-study-text"></div>
         </div>
 
         <div class="answers-grid" id="scroll-options"></div>
@@ -1600,7 +1735,7 @@
         <div class="modal-title-group">
           <div class="modal-icon">🏆</div>
           <div>
-            <div class="modal-title">Podium Juara Matematika Kelas 9</div>
+            <div class="modal-title">Podium Juara Petualangan Matematika</div>
             <div class="modal-subtitle">Pemain dengan Nilai Tertinggi Berhak Mengklaim Sertifikat Juara!</div>
           </div>
         </div>
@@ -1616,7 +1751,7 @@
         <div class="podium-container" id="podium-box"></div>
 
         <!-- Daftar Lengkap Pemain -->
-        <h4 style="margin-bottom: 10px; font-size: 13px; color: #94a3b8; font-weight: 800;">Klasemen Real-Time Seluruh Pemain di Kelas (<span id="leaderboard-room-label">MATEMATIKA9</span>):</h4>
+        <h4 style="margin-bottom: 10px; font-size: 13px; color: #94a3b8; font-weight: 800;">Klasemen Real-Time Seluruh Pemain di Kelas (<span id="leaderboard-room-label">MATEMATIKA1</span>):</h4>
         <div id="leaderboard-list"></div>
 
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px;">
@@ -1634,7 +1769,7 @@
         <div class="modal-title-group">
           <div class="modal-icon">🎓</div>
           <div>
-            <div class="modal-title">Klaim E-Sertifikat Juara Matematika Kelas 9</div>
+            <div class="modal-title">Klaim E-Sertifikat Juara Matematika</div>
             <div class="modal-subtitle">Peraih Nilai Tertinggi Berhak Mengklaim Sertifikat Juara Tercepat!</div>
           </div>
         </div>
@@ -1688,7 +1823,7 @@
           <div class="modal-icon">👨‍🏫</div>
           <div>
             <div class="modal-title">Mode Guru - Kode Kelas &amp; Bank Soal Matematika</div>
-            <div class="modal-subtitle">Masukkan Token Admin untuk Mengubah Kode Kelas atau Menambah Soal</div>
+            <div class="modal-subtitle">Masukkan Token Admin untuk Mengubah Kode Kelas atau Menambah Soal + Contoh Pelajari</div>
           </div>
         </div>
         <button type="button" class="btn-close" onclick="closeModal('modal-teacher')">&times;</button>
@@ -1701,7 +1836,7 @@
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
             <input type="password" class="form-input" id="modal-teacher-token" placeholder="Token Admin (Default: GURU123)" style="flex: 1; min-width: 160px;">
-            <input type="text" class="form-input" id="modal-new-room-code" placeholder="Kode Kelas Baru (Misal: KELAS9A)" maxlength="12" style="flex: 1; min-width: 140px; text-transform: uppercase; font-weight: 900; color: #38BDF8;">
+            <input type="text" class="form-input" id="modal-new-room-code" placeholder="Kode Kelas Baru (Misal: KELAS5A)" maxlength="10" style="flex: 1; min-width: 140px; text-transform: uppercase; font-weight: 900; color: #38BDF8;">
           </div>
           <div style="display: flex; gap: 8px;">
             <button type="button" class="primary-btn" style="flex: 1; padding: 9px; font-size: 13px; background: #059669;" onclick="changeRoomCodeByTeacher()">✅ Terapkan Kode Kelas Baru untuk Semua Siswa</button>
@@ -1710,22 +1845,26 @@
         </div>
 
         <div class="form-group">
-          <label>Pilih Pos Tantangan Matematika Kelas 9:</label>
+          <label>Pilih Pos Tantangan Matematika:</label>
           <select class="form-select" id="teacher-mapel">
-            <option value="cari_kalimat">Pos 1: Bilangan Berpangkat (Eksponen)</option>
-            <option value="perbaiki_kalimat">Pos 2: Bentuk Akar &amp; Merasionalkan</option>
-            <option value="regular_verb">Pos 3: Notasi Ilmiah (Bentuk Baku)</option>
-            <option value="irregular_verb">Pos 4: Aljabar &amp; Pemfaktoran Kuadrat</option>
-            <option value="negatif_tanya">Pos 5: Persamaan &amp; Fungsi Kuadrat</option>
+            <option value="penjumlahan">Pos 1: Penjumlahan (+)</option>
+            <option value="pengurangan">Pos 2: Pengurangan (-)</option>
+            <option value="perkalian">Pos 3: Perkalian (&times;)</option>
+            <option value="pembagian">Pos 4: Pembagian (&divide;)</option>
+            <option value="campuran">Pos 5: Operasi Campuran &amp; Soal Cerita</option>
           </select>
         </div>
         <div class="form-group">
           <label>Pertanyaan Soal Baru:</label>
-          <input type="text" class="form-input" id="teacher-q" placeholder="Contoh: Berapakah hasil dari 2^4 x 2^3 ?">
+          <input type="text" class="form-input" id="teacher-q" placeholder="Contoh: Berapakah hasil dari 15 x 6?">
         </div>
         <div class="form-group">
-          <label>Contoh Serupa &amp; Cara Mengerjakan (Untuk Tombol Pelajari):</label>
-          <textarea class="form-textarea" rows="2" id="teacher-learn" placeholder="Contoh: Jika ada soal 3^2 x 3^4, jumlahkan pangkatnya: 3^(2+4) = 3^6."></textarea>
+          <label>📖 Teks / Wacana Apersepsi Soal (Pengantar Kontekstual):</label>
+          <textarea class="form-textarea" rows="2" id="teacher-apersepsi" placeholder="Contoh: Di koperasi sekolah, setiap kotak berisi sejumlah alat tulis yang disusun rapi untuk kebutuhan siswa..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>💡 Contoh Cara Mengerjakan (Tombol Pelajari - Gunakan Angka Berbeda):</label>
+          <textarea class="form-textarea" rows="2" id="teacher-study" placeholder="Contoh: Misal menghitung 14 x 5: Pisahkan puluhan dan satuan -> (10 x 5) + (4 x 5) = 50 + 20 = 70."></textarea>
         </div>
         <div class="form-group">
           <label>Pilihan Jawaban (A, B, C, D):</label>
@@ -1745,7 +1884,7 @@
         </div>
         <div class="form-group">
           <label>Pembahasan Edukatif:</label>
-          <textarea class="form-textarea" rows="2" id="teacher-explain" placeholder="Tuliskan langkah penyelesaian soal di atas..."></textarea>
+          <textarea class="form-textarea" rows="2" id="teacher-explain" placeholder="Tuliskan langkah perhitungan jawaban yang benar..."></textarea>
         </div>
         <button class="primary-btn" onclick="saveCustomQuestion()">Simpan Soal ke Pos</button>
       </div>
@@ -1851,382 +1990,371 @@
     const audio = new ProceduralAudio();
 
     /* =====================================================================
-       2. KURIKULUM MATEMATIKA KELAS 9: BILANGAN & ALJABAR (5 POS + 12 GULUNGAN)
-       Dilengkapi fitur "learn" (Contoh berbeda dengan tujuan sama)
+       2. KURIKULUM MATEMATIKA (PENJUMLAHAN, PENGURANGAN, PERKALIAN, PEMBAGIAN)
+          DILENGKAPI WACANA APERSEPSI, ILUSTRASI GAMBAR SVG, & CONTOH PELAJARI
        ===================================================================== */
+    function createMathIllustrationSVG(theme, badgeText, iconEmoji) {
+      const palettes = {
+        penjumlahan: { bg1: "#450A0A", bg2: "#991B1B", accent: "#F87171", op: "+" },
+        pengurangan: { bg1: "#172554", bg2: "#1D4ED8", accent: "#60A5FA", op: "−" },
+        perkalian:   { bg1: "#451A03", bg2: "#B45309", accent: "#FBBF24", op: "×" },
+        pembagian:   { bg1: "#2E1065", bg2: "#6D28D9", accent: "#C084FC", op: "÷" },
+        campuran:    { bg1: "#064E3B", bg2: "#047857", accent: "#34D399", op: "±" }
+      };
+      const pal = palettes[theme] || palettes.campuran;
+      return `
+        <svg viewBox="0 0 180 125" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad_${theme}" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="${pal.bg1}"/>
+              <stop offset="100%" stop-color="${pal.bg2}"/>
+            </linearGradient>
+          </defs>
+          <rect width="180" height="125" rx="14" fill="url(#grad_${theme})"/>
+          <circle cx="150" cy="25" r="28" fill="${pal.accent}" opacity="0.18"/>
+          <circle cx="25" cy="105" r="32" fill="${pal.accent}" opacity="0.14"/>
+          <rect x="12" y="12" width="42" height="42" rx="10" fill="rgba(255,255,255,0.12)" stroke="${pal.accent}" stroke-width="1.5"/>
+          <text x="33" y="41" font-size="24" text-anchor="middle">${iconEmoji || "🧮"}</text>
+          <circle cx="144" cy="33" r="16" fill="${pal.accent}"/>
+          <text x="144" y="39" font-size="20" font-weight="900" fill="#0F172A" text-anchor="middle" font-family="Nunito, sans-serif">${pal.op}</text>
+          <rect x="12" y="68" width="156" height="44" rx="10" fill="rgba(15,23,42,0.78)" stroke="${pal.accent}" stroke-width="1.5"/>
+          <text x="90" y="95" font-size="15.5" font-weight="900" fill="#FDE047" text-anchor="middle" font-family="Nunito, sans-serif">${badgeText}</text>
+        </svg>
+      `;
+    }
+
     const defaultCurriculum = {
-      cari_kalimat: {
-        title: "Pos 1: Bilangan Berpangkat (Eksponen)",
-        icon: "🔢",
+      penjumlahan: {
+        title: "Pos 1: Penjumlahan (+)",
+        icon: "➕",
         color: 0xEF4444,
-        materi: "Sifat-sifat utama Bilangan Berpangkat (Eksponen) Kelas 9:\n1) Perkalian basis sama: a^m × a^n = a^(m+n)\n2) Pembagian basis sama: a^m ÷ a^n = a^(m-n)\n3) Pangkat dipangkatkan: (a^m)^n = a^(m×n)\n4) Pangkat nol & negatif: a^0 = 1 (untuk a ≠ 0) dan a^(-n) = 1 / a^n.",
+        materi: "Penjumlahan adalah cara menggabungkan dua atau lebih kumpulan benda menjadi satu jumlah keseluruhan. Trik Cepat: Kelompokkan Ratusan dengan Ratusan, Puluhan dengan Puluhan, dan Satuan dengan Satuan! Jika jumlah satuan mencapai 10 atau lebih, simpan 1 puluhan.",
         quizzes: [
           {
-            q: "Bentuk sederhana dari 3^4 × 3^5 ÷ 3^6 adalah...",
-            learn: "Contoh Serupa: Sederhanakan 2^5 × 2^4 ÷ 2^6.\nCara Mengerjakan:\n• Jika dikali pangkatnya ditambah, jika dibagi pangkatnya dikurangi.\n• Pangkat = 5 + 4 - 6 = 3.\n• Jadi hasilnya adalah 2^3 = 8. Sekarang terapkan cara yang sama pada soal di atas!",
-            options: [
-              "3^2 = 9",
-              "3^3 = 27",
-              "3^4 = 81",
-              "3^5 = 243"
-            ],
+            apersepsi: "Saat panen buah di kebun desa, Keranjang Pertama berisi 47 apel merah segar dan Keranjang Kedua berisi 38 apel hijau manis. Petani ingin menggabungkan kedua keranjang tersebut.",
+            svg: createMathIllustrationSVG("penjumlahan", "47 + 38 = ?", "🍎"),
+            q: "Berapakah hasil penjumlahan dari 47 + 38?",
+            studyExample: "🎯 Contoh Serupa: Mari hitung 56 + 27!\n1. Jumlahkan puluhan: 50 + 20 = 70\n2. Jumlahkan satuan: 6 + 7 = 13\n3. Gabungkan keduanya: 70 + 13 = 83.\nSekarang gunakan cara yang sama untuk 47 + 38!",
+            options: ["75", "85", "86", "95"],
             answer: 1,
-            explain: "Gunakan sifat eksponen: 3^(4 + 5 - 6) = 3^3 = 27."
+            explain: "Puluhan: 40 + 30 = 70. Satuan: 7 + 8 = 15. Totalnya: 70 + 15 = 85."
           },
           {
-            q: "Hasil dari bentuk perpangkatan (2^3)^2 × 2^(-4) adalah...",
-            learn: "Contoh Serupa: Hitunglah (5^2)^3 × 5^(-4).\nCara Mengerjakan:\n1) Pangkat dipangkatkan artinya dikali: (5^2)^3 = 5^(2×3) = 5^6.\n2) Kalikan dengan 5^(-4): jumlahkan pangkatnya -> 5^(6 + (-4)) = 5^2 = 25.",
-            options: [
-              "2",
-              "4",
-              "8",
-              "16"
-            ],
+            apersepsi: "Perpustakaan SD Nusantara baru saja menerima kiriman buku bacaan baru. Rak sebelah kiri diisi 135 buku cerita bergambar dan rak sebelah kanan diisi 148 buku ensiklopedia sains.",
+            svg: createMathIllustrationSVG("penjumlahan", "135 + 148 Buku", "📚"),
+            q: "Di perpustakaan sekolah terdapat 135 buku cerita dan 148 buku pengetahuan. Berapa jumlah seluruh buku tersebut?",
+            studyExample: "🎯 Contoh Serupa: Misal ada 124 buku merah dan 159 buku biru.\n1. Ratusan: 100 + 100 = 200\n2. Puluhan: 20 + 50 = 70\n3. Satuan: 4 + 9 = 13\n4. Total: 200 + 70 + 13 = 283 buku.",
+            options: ["273 buku", "283 buku", "293 buku", "285 buku"],
             answer: 1,
-            explain: "(2^3)^2 = 2^(3×2) = 2^6. Lalu 2^6 × 2^(-4) = 2^(6 - 4) = 2^2 = 4."
+            explain: "135 + 148 -> Ratusan (100+100=200) + Puluhan (30+40=70) + Satuan (5+8=13) = 283 buku."
           },
           {
-            q: "Berapakah nilai dari 5^0 + 2^(-2) ?",
-            learn: "Contoh Serupa: Hitunglah nilai dari 7^0 + 3^(-2).\nCara Mengerjakan:\n1) Semua bilangan (selain 0) dipangkatkan 0 hasilnya 1 -> 7^0 = 1.\n2) Pangkat negatif diubah menjadi pecahan positif -> 3^(-2) = 1/(3^2) = 1/9.\n3) Jumlahkan: 1 + 1/9 = 1 1/9 atau 10/9.",
-            options: [
-              "1/4",
-              "3/4",
-              "5/4 (atau 1 1/4)",
-              "9/4"
-            ],
-            answer: 2,
-            explain: "5^0 = 1 dan 2^(-2) = 1/(2^2) = 1/4. Maka 1 + 1/4 = 5/4 (atau 1 1/4)."
+            apersepsi: "Dalam lomba mengumpulkan koin amal sekolah, Kelas 5A berhasil mengumpulkan 264 koin dan Kelas 5B mengumpulkan 176 koin. Perhatikan angka satuannya yang saling melengkapi menjadi puluhan!",
+            svg: createMathIllustrationSVG("penjumlahan", "264 + 176 = ?", "🪙"),
+            q: "Berapakah hasil dari 264 + 176?",
+            studyExample: "🎯 Contoh Serupa: Hitung 342 + 188!\n1. Perhatikan satuannya pas menjadi 10: 2 + 8 = 10.\n2. Puluhan: 40 + 80 = 120.\n3. Ratusan: 300 + 100 = 400.\n4. Jumlahkan semua: 400 + 120 + 10 = 530.",
+            options: ["430", "440", "450", "340"],
+            answer: 1,
+            explain: "Satuan: 4 + 6 = 10. Puluhan: 60 + 70 = 130. Ratusan: 200 + 100 = 300. Total: 300 + 130 + 10 = 440."
           },
           {
-            q: "Bentuk sederhana dari (3a^2 b^3)^2 adalah...",
-            learn: "Contoh Serupa: Sederhanakan (2x^3 y^2)^3.\nCara Mengerjakan:\n• Pangkatkan angka koefisiennya: 2^3 = 8.\n• Kalikan pangkat tiap variabel dengan pangkat luar: x^(3×3) = x^9 dan y^(2×3) = y^6.\n• Hasil akhirnya: 8x^9 y^6.",
-            options: [
-              "6a^4 b^5",
-              "9a^4 b^6",
-              "9a^4 b^5",
-              "3a^4 b^6"
-            ],
+            apersepsi: "Tiga kelompok petani memanen buah mangga harum manis dari tiga blok kebun yang berbeda. Kamu bisa menjumlahkan dua angka yang menghasilkan bilangan bulat 100 terlebih dahulu agar lebih cepat!",
+            svg: createMathIllustrationSVG("penjumlahan", "75 + 25 + 49", "🥭"),
+            q: "Panitia memanen 75 buah mangga di kebun A, 25 buah di kebun B, dan 49 buah di kebun C. Berapa total mangga yang dipanen?",
+            studyExample: "🎯 Contoh Serupa: Hitung 65 + 35 + 42!\n1. Cari pasangan angka yang menghasilkan ratusan bulat dulu: 65 + 35 = 100.\n2. Baru tambahkan angka ketiga: 100 + 42 = 142.",
+            options: ["139 buah", "149 buah", "159 buah", "145 buah"],
             answer: 1,
-            explain: "Pangkatkan setiap unsur di dalam kurung dengan 2: 3^2 × a^(2×2) × b^(3×2) = 9a^4 b^6."
+            explain: "Pasangkan dulu 75 + 25 = 100. Lalu tambahkan 49: 100 + 49 = 149 buah mangga."
           }
         ]
       },
-      perbaiki_kalimat: {
-        title: "Pos 2: Bentuk Akar & Merasionalkan",
-        icon: "🛠️",
+      pengurangan: {
+        title: "Pos 2: Pengurangan (-)",
+        icon: "➖",
         color: 0x3B82F6,
-        materi: "Operasi Bentuk Akar Kelas 9:\n1) Menyederhanakan akar: √(a × b) = √a × √b (pilih salah satu faktor bilangan kuadrat seperti 4, 9, 16, 25, 36).\n2) Penjumlahan/Pengurangan: p√c + q√c = (p+q)√c.\n3) Merasionalkan penyebut: a/√b dikalikan dengan √b/√b menjadi (a√b)/b.",
+        materi: "Pengurangan digunakan untuk menghitung sisa benda setelah diambil atau mencari selisih antara dua nilai. Trik Mudah: Kurangi bertahap dari puluhan lalu satuannya, atau gunakan teknik meminjam 1 puluhan!",
         quizzes: [
           {
-            q: "Hasil penyederhanaan dari √75 + √12 - √27 adalah...",
-            learn: "Contoh Serupa: Hitunglah √50 + √8 - √18.\nCara Mengerjakan:\n1) Ubah ke perkalian bilangan kuadrat: √50 = √(25×2) = 5√2; √8 = √(4×2) = 2√2; √18 = √(9×2) = 3√2.\n2) Hitung koefisiennya: (5 + 2 - 3)√2 = 4√2.\nPetunjuk soal di atas: ubah semuanya menjadi bentuk akar √3!",
-            options: [
-              "2√3",
-              "3√3",
-              "4√3",
-              "5√3"
-            ],
-            answer: 2,
-            explain: "√75 = √(25×3) = 5√3; √12 = √(4×3) = 2√3; √27 = √(9×3) = 3√3. Maka 5√3 + 2√3 - 3√3 = 4√3."
-          },
-          {
-            q: "Hasil dari perkalian bentuk akar (√5 + √3)(√5 - √3) adalah...",
-            learn: "Contoh Serupa: Hitunglah (√7 + √2)(√7 - √2).\nCara Mengerjakan:\n• Gunakan rumus selisih kuadrat: (√a + √b)(√a - √b) = a - b.\n• Maka (√7 + √2)(√7 - √2) = 7 - 2 = 5.",
-            options: [
-              "2",
-              "8",
-              "15",
-              "2√15"
-            ],
+            apersepsi: "Seorang peternak mengumpulkan 92 butir telur ayam di pagi hari. Sebanyak 37 butir telur telah terjual di pasar tradisional. Mari hitung berapa butir telur yang masih tersisa!",
+            svg: createMathIllustrationSVG("pengurangan", "92 − 37 = ?", "🥚"),
+            q: "Berapakah hasil pengurangan dari 92 - 37?",
+            studyExample: "🎯 Contoh Serupa: Mari hitung 83 - 26!\n1. Karena satuan 3 tidak cukup dikurangi 6, pinjam 1 puluhan dari 80 (80 sisa 70, satuan menjadi 13).\n2. Kurangi satuan: 13 - 6 = 7.\n3. Kurangi puluhan: 70 - 20 = 50.\n4. Gabungkan: 50 + 7 = 57.",
+            options: ["55", "65", "53", "45"],
             answer: 0,
-            explain: "Menggunakan sifat (√a + √b)(√a - √b) = a - b, maka 5 - 3 = 2."
+            explain: "Pinjam 1 puluhan dari 90 menjadi 80 dan satuan menjadi 12. Lalu (12 - 7 = 5) dan (80 - 30 = 50). Hasilnya 55."
           },
           {
-            q: "Bentuk rasional dari pecahan 12 / √6 adalah...",
-            learn: "Contoh Serupa: Rasionalkan pecahan 10 / √5.\nCara Mengerjakan:\n• Kalikan pembilang dan penyebut dengan √5: (10 / √5) × (√5 / √5) = 10√5 / 5.\n• Bagi angka di luar akar: (10 ÷ 5)√5 = 2√5.",
-            options: [
-              "2√6",
-              "3√6",
-              "6√2",
-              "12√6"
-            ],
-            answer: 0,
-            explain: "(12 / √6) × (√6 / √6) = 12√6 / 6 = 2√6."
-          },
-          {
-            q: "Bentuk rasional dari 6 / (3 - √3) adalah...",
-            learn: "Contoh Serupa: Rasionalkan 4 / (2 - √2).\nCara Mengerjakan:\n1) Kalikan dengan sekawan penyebutnya yaitu (2 + √2):\n   = 4(2 + √2) / (2^2 - (√2)^2)\n2) Hitung penyebutnya: 4 - 2 = 2.\n3) Sederhanakan: 4(2 + √2) / 2 = 2(2 + √2) = 4 + 2√2.",
-            options: [
-              "3 - √3",
-              "3 + √3",
-              "2 + √3",
-              "6 + 2√3"
-            ],
+            apersepsi: "Pada acara festival taman kota, seorang penjual balon udara membawa 150 balon warna-warni. Anak-anak membeli 64 balon dengan gembira.",
+            svg: createMathIllustrationSVG("pengurangan", "150 − 64 Balon", "🎈"),
+            q: "Seorang pedagang membawa 150 balon. Di perjalanan, 64 balon terjual kepada anak-anak. Berapa sisa balon pedagang itu?",
+            studyExample: "🎯 Contoh Serupa: Hitung 140 - 52!\n1. Kurangi puluhan bulat dulu: 140 - 50 = 90.\n2. Kurangi sisanya (satuan): 90 - 2 = 88.\nCara bertahap ini sangat mudah tanpa takut salah meminjam!",
+            options: ["76 balon", "86 balon", "96 balon", "84 balon"],
             answer: 1,
-            explain: "Kalikan sekawan (3 + √3): 6(3 + √3) / (9 - 3) = 6(3 + √3) / 6 = 3 + √3."
+            explain: "Kurangi puluhan dulu: 150 - 60 = 90. Lalu kurangi satuannya: 90 - 4 = 86 balon."
+          },
+          {
+            apersepsi: "Mengurangi bilangan ratusan bulat (seperti 300) sering membuat bingung saat meminjam dari angka nol. Dengan trik mengurangi 1 pada kedua bilangan, perhitungan menjadi bebas pinjam!",
+            svg: createMathIllustrationSVG("pengurangan", "300 − 145 = ?", "🎯"),
+            q: "Berapakah hasil dari 300 - 145?",
+            studyExample: "🎯 Contoh Serupa: Hitung 400 - 165!\nTrik Kurangi 1: Kurangi kedua angka dengan 1 agar tidak perlu meminjam dari nol!\n• 400 - 1 = 399\n• 165 - 1 = 164\n• Tinggal kurangi: 399 - 164 = 235!",
+            options: ["145", "155", "165", "255"],
+            answer: 1,
+            explain: "Gunakan trik kurangi 1: (300 - 1 = 299) dikurangi (145 - 1 = 144) -> 299 - 144 = 155."
+          },
+          {
+            apersepsi: "Dalam pertandingan cerdas cermat antar regu, Papan Skor menunjukkan Tim Merah meraih 240 poin dan Tim Biru meraih 175 poin. Berapa jarak poin di antara kedua tim?",
+            svg: createMathIllustrationSVG("pengurangan", "Selisih 240 & 175", "🏆"),
+            q: "Skor tim Merah adalah 240 poin, sedangkan skor tim Biru adalah 175 poin. Berapakah selisih skor kedua tim?",
+            studyExample: "🎯 Contoh Serupa: Cari selisih 230 dan 185 (230 - 185)!\n1. Hitung jarak dari 185 menuju 200 -> butuh +15.\n2. Hitung jarak dari 200 menuju 230 -> butuh +30.\n3. Jumlahkan jaraknya: 15 + 30 = 45.",
+            options: ["55 poin", "65 poin", "75 poin", "85 poin"],
+            answer: 1,
+            explain: "Dari 175 ke 200 berjarak 25 poin. Dari 200 ke 240 berjarak 40 poin. Total selisih: 25 + 40 = 65 poin."
           }
         ]
       },
-      regular_verb: {
-        title: "Pos 3: Notasi Ilmiah (Bentuk Baku)",
-        icon: "📘",
+      perkalian: {
+        title: "Pos 3: Perkalian (×)",
+        icon: "✖️",
         color: 0xF59E0B,
-        materi: "Notasi Ilmiah (Bentuk Baku) ditulis dalam bentuk: a × 10^n, dengan syarat 1 ≤ a < 10 dan n adalah bilangan bulat.\n• Bilangan sangat besar (> 10): pangkat n bernilai positif (hitung geseran koma ke kiri).\n• Bilangan sangat kecil (antara 0 dan 1): pangkat n bernilai negatif (hitung geseran koma ke kanan).",
+        materi: "Perkalian adalah penjumlahan berulang dari kelompok benda yang jumlahnya sama banyak. Untuk angka belasan atau puluhan, pecah menjadi Puluhan dan Satuan lalu kalikan masing-masing (Sifat Distributif)!",
         quizzes: [
           {
-            q: "Bentuk baku (notasi ilmiah) dari bilangan 45.000.000 adalah...",
-            learn: "Contoh Serupa: Tuliskan bentuk baku dari 32.000.000.\nCara Mengerjakan:\n1) Ambil angka pokok di antara 1 sampai 10, yaitu a = 3,2.\n2) Hitung berapa langkah koma bergeser dari paling kanan ke belakang angka 3 -> bergeser 7 langkah.\n3) Maka bentuk bakunya adalah 3,2 × 10^7.",
-            options: [
-              "45 × 10^6",
-              "4,5 × 10^6",
-              "4,5 × 10^7",
-              "0,45 × 10^8"
-            ],
-            answer: 2,
-            explain: "Agar 1 ≤ a < 10, kita pilih a = 4,5. Dari 4,5 ke 45.000.000 koma bergeser 7 digit, sehingga 4,5 × 10^7."
-          },
-          {
-            q: "Bentuk baku dari bilangan desimal 0,00056 adalah...",
-            learn: "Contoh Serupa: Ubahlah 0,00078 menjadi bentuk baku.\nCara Mengerjakan:\n1) Pilih angka pokok antara 1 dan 10, yaitu a = 7,8.\n2) Hitung berapa kali koma digeser ke kanan dari 0,00078 sampai menjadi 7,8 -> bergeser 4 langkah ke kanan.\n3) Karena bilangan kecil (< 1), pangkatnya negatif: 7,8 × 10^(-4).",
-            options: [
-              "5,6 × 10^(-3)",
-              "5,6 × 10^(-4)",
-              "5,6 × 10^(-5)",
-              "56 × 10^(-5)"
-            ],
+            apersepsi: "Di kebun bunga sekolah terdapat 8 baris pot tanaman. Setiap baris memiliki 7 pot bunga matahari yang mekar bersamaan.",
+            svg: createMathIllustrationSVG("perkalian", "8 Baris × 7 Pot", "🌻"),
+            q: "Berapakah hasil perkalian dari 8 × 7?",
+            studyExample: "🎯 Contoh Serupa: Cara mudah menghitung 8 × 6 jika lupa hafalan:\n1. Kita tahu 5 × 6 = 30 dan 3 × 6 = 18.\n2. Karena 8 adalah (5 + 3), maka tambahkan hasilnya: 30 + 18 = 48!\nSekarang coba pecah 8 × 7 menjadi (5 × 7) + (3 × 7)!",
+            options: ["54", "56", "58", "64"],
             answer: 1,
-            explain: "Geser tanda koma 4 langkah ke kanan hingga menjadi 5,6. Maka bentuk bakunya adalah 5,6 × 10^(-4)."
+            explain: "(5 × 7 = 35) ditambah (3 × 7 = 21) -> 35 + 21 = 56."
           },
           {
-            q: "Hasil dari (3 × 10^4) × (2,5 × 10^3) jika ditulis dalam notasi ilmiah adalah...",
-            learn: "Contoh Serupa: Hitunglah (2 × 10^5) × (3,2 × 10^2).\nCara Mengerjakan:\n1) Kalikan angka depannya: 2 × 3,2 = 6,4.\n2) Kalikan perpangkatan 10 dengan menjumlahkan pangkatnya: 10^(5+2) = 10^7.\n3) Gabungkan hasilnya: 6,4 × 10^7.",
-            options: [
-              "5,5 × 10^7",
-              "7,5 × 10^7",
-              "7,5 × 10^12",
-              "75 × 10^6"
-            ],
+            apersepsi: "Aula pertemuan sekolah menata 14 meja belajar kelompok. Setiap meja dikelilingi oleh 6 siswa yang sedang berdiskusi.",
+            svg: createMathIllustrationSVG("perkalian", "14 Meja × 6 Siswa", "🪑"),
+            q: "Di ruang kelas terdapat 14 meja. Setiap meja ditempati oleh 6 siswa. Berapa jumlah seluruh siswa di kelas itu?",
+            studyExample: "🎯 Contoh Serupa: Mari hitung 13 × 5!\n1. Pecah angka 13 menjadi (10 + 3).\n2. Kalikan puluhan: 10 × 5 = 50.\n3. Kalikan satuan: 3 × 5 = 15.\n4. Jumlahkan: 50 + 15 = 65.",
+            options: ["74 siswa", "84 siswa", "94 siswa", "86 siswa"],
             answer: 1,
-            explain: "Kalikan angka pokok: 3 × 2,5 = 7,5. Jumlahkan pangkat 10: 10^(4+3) = 10^7. Jadi hasilnya 7,5 × 10^7."
+            explain: "14 × 6 -> Pecah menjadi (10 × 6) + (4 × 6) = 60 + 24 = 84 siswa."
           },
           {
-            q: "Jika kecepatan cahaya adalah 3 × 10^8 m/detik, berapakah jarak yang ditempuh cahaya dalam waktu 50 detik (dalam notasi ilmiah)?",
-            learn: "Contoh Serupa: Sebuah gelombang bergerak dengan kecepatan 4 × 10^6 m/detik selama 30 detik. Berapa jaraknya?\nCara Mengerjakan:\n1) Jarak = Kecepatan × Waktu = (4 × 10^6) × 30.\n2) Ubah 30 menjadi 3 × 10^1, lalu kalikan: (4 × 3) × 10^(6+1) = 12 × 10^7.\n3) Karena 12 lebih dari 10, ubah menjadi 1,2 × 10^8 meter.",
-            options: [
-              "15 × 10^9 meter",
-              "1,5 × 10^9 meter",
-              "1,5 × 10^10 meter",
-              "1,5 × 10^8 meter"
-            ],
-            answer: 2,
-            explain: "Jarak = (3 × 10^8) × 50 = 150 × 10^8 = 1,5 × 10^2 × 10^8 = 1,5 × 10^10 meter."
+            apersepsi: "Koperasi sekolah memesan 12 pak buku gambar. Setiap pak berisi 25 buku gambar. Ingat bahwa bilangan 25 sangat mudah dikalikan dengan kelipatan 4 atau dipecah menjadi puluhan!",
+            svg: createMathIllustrationSVG("perkalian", "25 × 12 Pak", "📦"),
+            q: "Berapakah hasil dari 25 × 12?",
+            studyExample: "🎯 Contoh Serupa: Hitung 25 × 8 dengan trik lipat & bagi dua!\n1. Ingat bahwa 25 × 4 = 100.\n2. Karena 8 adalah 4 × 2, maka 25 × 8 = 100 × 2 = 200!\nAtau pecah pengalinya menjadi puluhan dan satuan.",
+            options: ["250", "300", "325", "350"],
+            answer: 1,
+            explain: "Pecah 12 menjadi 10 + 2: (25 × 10 = 250) + (25 × 2 = 50) = 300."
+          },
+          {
+            apersepsi: "Sebuah mobil boks mengangkut 9 peti buah jeruk segar dari petani. Tiap peti berisi tepat 45 buah jeruk. Gunakan trik perkalian 10 dikurangi 1 kali untuk menghitung cepat!",
+            svg: createMathIllustrationSVG("perkalian", "9 Peti × 45 Jeruk", "🍊"),
+            q: "Sebuah truk mengangkut 9 kotak jeruk. Setiap kotak berisi 45 buah jeruk. Berapa total jeruk yang diangkut truk tersebut?",
+            studyExample: "🎯 Contoh Serupa: Trik cepat perkalian 9, misal 9 × 35:\n1. Kalikan dulu dengan 10: 10 × 35 = 350.\n2. Kurangi dengan 1 kali angka itu sendiri (35): 350 - 35 = 315.\nMudah sekali kan? Sekarang coba untuk 9 × 45!",
+            options: ["395 jeruk", "405 jeruk", "415 jeruk", "425 jeruk"],
+            answer: 1,
+            explain: "Gunakan trik ×10 dikurangi 1 kali: (10 × 45) - 45 = 450 - 45 = 405 buah jeruk."
           }
         ]
       },
-      irregular_verb: {
-        title: "Pos 4: Aljabar & Pemfaktoran Kuadrat",
-        icon: "⚡",
+      pembagian: {
+        title: "Pos 4: Pembagian (÷)",
+        icon: "➗",
         color: 0x8B5CF6,
-        materi: "Perkalian & Pemfaktoran Bentuk Aljabar Kelas 9:\n1) Perkalian dua suku: (x + p)(x + q) = x^2 + (p+q)x + (p×q).\n2) Selisih dua kuadrat: x^2 - y^2 = (x + y)(x - y).\n3) Memfaktorkan x^2 + bx + c: cari dua bilangan p dan q yang jika dijumlahkan hasilnya b dan jika dikalikan hasilnya c.",
+        materi: "Pembagian adalah membagi suatu jumlah benda secara adil dan sama rata ke beberapa kelompok, atau kebalikan dari perkalian (Jika A × B = C, maka C ÷ B = A). Pecah bilangan besar agar mudah dibagi!",
         quizzes: [
           {
-            q: "Hasil penjabaran dari bentuk aljabar (2x + 3)(x - 4) adalah...",
-            learn: "Contoh Serupa: Jabarkan (3x + 2)(x - 5).\nCara Mengerjakan (Kali Pelangi / Skema):\n1) Depan × Depan: 3x × x = 3x^2\n2) Luar × Luar: 3x × (-5) = -15x\n3) Dalam × Dalam: 2 × x = +2x\n4) Belakang × Belakang: 2 × (-5) = -10\nGabungkan suku tengah: 3x^2 + (-15x + 2x) - 10 = 3x^2 - 13x - 10.",
-            options: [
-              "2x^2 - 5x - 12",
-              "2x^2 + 5x - 12",
-              "2x^2 - 11x - 12",
-              "2x^2 - 5x + 12"
-            ],
-            answer: 0,
-            explain: "2x(x) + 2x(-4) + 3(x) + 3(-4) = 2x^2 - 8x + 3x - 12 = 2x^2 - 5x - 12."
-          },
-          {
-            q: "Bentuk pemfaktoran yang tepat dari x^2 + 7x + 12 adalah...",
-            learn: "Contoh Serupa: Faktorkanlah x^2 + 8x + 15.\nCara Mengerjakan:\n• Cari dua angka yang jika DIJUMLAH hasilnya 8, dan jika DIKALI hasilnya 15.\n• Angka tersebut adalah 3 dan 5 (karena 3 + 5 = 8 dan 3 × 5 = 15).\n• Maka bentuk faktornya adalah (x + 3)(x + 5).",
-            options: [
-              "(x + 2)(x + 6)",
-              "(x + 3)(x + 4)",
-              "(x - 3)(x - 4)",
-              "(x + 1)(x + 12)"
-            ],
-            answer: 1,
-            explain: "Dua bilangan yang dijumlahkan = 7 dan dikalikan = 12 adalah 3 dan 4. Maka faktornya (x + 3)(x + 4)."
-          },
-          {
-            q: "Pemfaktoran dari bentuk selisih dua kuadrat 4x^2 - 25 adalah...",
-            learn: "Contoh Serupa: Faktorkanlah 9x^2 - 16.\nCara Mengerjakan:\n• Gunakan sifat a^2 - b^2 = (a + b)(a - b).\n• Akar dari 9x^2 adalah 3x, dan akar dari 16 adalah 4.\n• Maka faktornya adalah (3x + 4)(3x - 4).",
-            options: [
-              "(2x - 5)(2x - 5)",
-              "(4x + 5)(x - 5)",
-              "(2x + 5)(2x - 5)",
-              "(2x + 25)(2x - 1)"
-            ],
+            apersepsi: "Sebanyak 72 kelereng kaca akan dimasukkan sama rata ke dalam 8 kantong kecil. Ingat kembali perkalian 8 untuk menemukan isinya dengan cepat!",
+            svg: createMathIllustrationSVG("pembagian", "72 ÷ 8 Kantong", "🔮"),
+            q: "Berapakah hasil pembagian dari 72 ÷ 8?",
+            studyExample: "🎯 Contoh Serupa: Mari cari hasil 63 ÷ 7!\n1. Ingat kebalikan perkalian: 7 dikali berapa yang hasilnya 63?\n2. Kita tahu 7 × 10 = 70 (kelebihan 7), berarti mundur 1 langkah: 7 × 9 = 63.\n3. Jadi 63 ÷ 7 = 9.",
+            options: ["7", "8", "9", "10"],
             answer: 2,
-            explain: "4x^2 - 25 = (2x)^2 - 5^2 = (2x + 5)(2x - 5)."
+            explain: "Karena 8 × 9 = 72, maka 72 ÷ 8 = 9."
           },
           {
-            q: "Bentuk sederhana dari pecahan aljabar (x^2 - 9) / (x + 3) adalah...",
-            learn: "Contoh Serupa: Sederhanakan (x^2 - 16) / (x + 4).\nCara Mengerjakan:\n1) Faktorkan bagian pembilang (atas): x^2 - 16 = (x + 4)(x - 4).\n2) Tuliskan kembali pecahannya: [(x + 4)(x - 4)] / (x + 4).\n3) Coret faktor yang sama yaitu (x + 4), sehingga tersisa x - 4.",
-            options: [
-              "x + 3",
-              "x - 3",
-              "x - 9",
-              "x + 6"
-            ],
-            answer: 1,
-            explain: "Faktorkan pembilang: x^2 - 9 = (x + 3)(x - 3). Dibagi (x + 3) menghasilkan x - 3."
+            apersepsi: "Dalam kegiatan melukis bersama, Ibu Guru menyiapkan 96 pensil warna untuk dibagikan secara adil kepada 6 kelompok belajar di kelas.",
+            svg: createMathIllustrationSVG("pembagian", "96 ÷ 6 Kelompok", "🖍️"),
+            q: "Ibu Guru memiliki 96 pensil warna yang akan dibagikan sama rata kepada 6 kelompok belajar. Berapa pensil yang diterima setiap kelompok?",
+            studyExample: "🎯 Contoh Serupa: Hitung 84 ÷ 6 dengan cara memecah angka!\n1. Pecah 84 menjadi angka puluhan yang habis dibagi 6, yaitu 60 + 24.\n2. Bagi bagian pertama: 60 ÷ 6 = 10.\n3. Bagi bagian kedua: 24 ÷ 6 = 4.\n4. Jumlahkan hasilnya: 10 + 4 = 14.",
+            options: ["14 pensil", "15 pensil", "16 pensil", "18 pensil"],
+            answer: 2,
+            explain: "Pecah 96 menjadi 60 + 36. Lalu (60 ÷ 6 = 10) ditambah (36 ÷ 6 = 6) = 16 pensil."
+          },
+          {
+            apersepsi: "Panitia menyiapkan 135 bibit pohon pelindung yang akan ditanam secara merata di 9 taman kota. Pecah angka 135 menjadi 90 ditambah sisanya!",
+            svg: createMathIllustrationSVG("pembagian", "135 ÷ 9 Taman", "🌱"),
+            q: "Berapakah hasil dari 135 ÷ 9?",
+            studyExample: "🎯 Contoh Serupa: Hitung 126 ÷ 9!\n1. Pecah 126 menjadi 90 + 36 (karena 90 adalah 9 × 10).\n2. 90 ÷ 9 = 10.\n3. 36 ÷ 9 = 4.\n4. Totalnya: 10 + 4 = 14.",
+            options: ["13", "14", "15", "16"],
+            answer: 2,
+            explain: "Pecah 135 menjadi 90 + 45. Lalu (90 ÷ 9 = 10) + (45 ÷ 9 = 5) = 15."
+          },
+          {
+            apersepsi: "Rombongan karya wisata sekolah yang berjumlah 180 siswa akan diberangkatkan menuju museum menggunakan 5 bus pariwisata berkapasitas sama.",
+            svg: createMathIllustrationSVG("pembagian", "180 Siswa ÷ 5 Bus", "🚌"),
+            q: "Sebanyak 180 siswa akan berangkat karya wisata menggunakan 5 bus dengan kapasitas sama banyak. Berapa siswa di setiap bus?",
+            studyExample: "🎯 Contoh Serupa: Hitung 160 ÷ 5!\n1. Pecah 160 menjadi 100 + 60.\n2. 100 ÷ 5 = 20.\n3. 60 ÷ 5 = 12.\n4. Jumlahkan keduanya: 20 + 12 = 32.",
+            options: ["32 siswa", "34 siswa", "36 siswa", "38 siswa"],
+            answer: 2,
+            explain: "Pecah 180 menjadi 150 + 30. (150 ÷ 5 = 30) ditambah (30 ÷ 5 = 6) = 36 siswa per bus."
           }
         ]
       },
-      negatif_tanya: {
-        title: "Pos 5: Persamaan & Fungsi Kuadrat",
+      campuran: {
+        title: "Pos 5: Operasi Campuran & Cerita",
         icon: "🏛️",
         color: 0x10B981,
-        materi: "Persamaan Kuadrat ax^2 + bx + c = 0 & Fungsi Kuadrat f(x) = ax^2 + bx + c:\n1) Akar-akar (x1 dan x2): nilai x yang membuat persamaan bernilai 0.\n2) Rumus Jumlah & Hasil Kali Akar: x1 + x2 = -b/a dan x1 × x2 = c/a.\n3) Diskriminan: D = b^2 - 4ac.\n4) Sumbu Simetri Grafik Fungsi Kuadrat: xp = -b / (2a).",
+        materi: "Aturan Emas Operasi Hitung Campuran (KABATAKU): 1) Kerjakan di dalam Tanda Kurung ( ) terlebih dahulu. 2) Kerjakan Perkalian (×) atau Pembagian (÷) sebelum Penjumlahan (+) dan Pengurangan (-). 3) Jika setara, kerjakan dari kiri ke kanan!",
         quizzes: [
           {
-            q: "Akar-akar penyelesaian dari persamaan kuadrat x^2 - 5x + 6 = 0 adalah...",
-            learn: "Contoh Serupa: Tentukan akar-akar dari x^2 - 7x + 10 = 0.\nCara Mengerjakan:\n1) Cari dua bilangan yang dikali = +10 dan dijumlah = -7 -> yaitu -2 dan -5.\n2) Faktorkan: (x - 2)(x - 5) = 0.\n3) Pembuat nolnya: x - 2 = 0 -> x = 2, atau x - 5 = 0 -> x = 5.",
-            options: [
-              "x = 2 atau x = 3",
-              "x = -2 atau x = -3",
-              "x = 1 atau x = 6",
-              "x = -1 atau x = 6"
-            ],
-            answer: 0,
-            explain: "Faktorkan x^2 - 5x + 6 = 0 menjadi (x - 2)(x - 3) = 0. Maka x = 2 atau x = 3."
+            apersepsi: "Di atas meja sudah ada 20 kelereng, lalu Andi menambahkan 6 kantong baru yang masing-masing berisi 8 kelereng. Ingat aturan prioritas: kalikan dulu sebelum menjumlahkan!",
+            svg: createMathIllustrationSVG("campuran", "20 + (6 × 8)", "⚖️"),
+            q: "Berapakah hasil dari 20 + 6 × 8?",
+            studyExample: "🎯 Contoh Serupa: Hitung 15 + 4 × 7!\n⚠️ Ingat aturan: Perkalian lebih kuat daripada Penjumlahan!\n1. Kerjakan perkalian dulu: 4 × 7 = 28.\n2. Baru tambahkan dengan angka depan: 15 + 28 = 43.\n(Jangan menjumlahkan 15 + 4 dulu ya!)",
+            options: ["208", "68", "78", "58"],
+            answer: 1,
+            explain: "Kerjakan perkalian lebih dulu: 6 × 8 = 48. Kemudian tambahkan: 20 + 48 = 68."
           },
           {
-            q: "Jika x1 dan x2 adalah akar-akar dari 2x^2 - 8x + 6 = 0, maka nilai dari x1 + x2 adalah...",
-            learn: "Contoh Serupa: Diketahui 3x^2 - 12x + 5 = 0. Berapa nilai x1 + x2?\nCara Mengerjakan:\n• Identifikasi koefisien: a = 3, b = -12, c = 5.\n• Gunakan rumus cepat jumlah akar: x1 + x2 = -b / a.\n• Masukkan angkanya: -(-12) / 3 = 12 / 3 = 4.",
-            options: [
-              "-4",
-              "3",
-              "4",
-              "8"
-            ],
+            apersepsi: "Jika terdapat tanda kurung ( ) pada soal matematika, maka operasi di dalam tanda kurung wajib diselesaikan paling pertama, dilanjutkan pembagian, lalu penjumlahan.",
+            svg: createMathIllustrationSVG("campuran", "(45 − 15) ÷ 5 + 12", "🧩"),
+            q: "Hitunglah hasil dari (45 - 15) ÷ 5 + 12!",
+            studyExample: "🎯 Contoh Serupa: Hitung (36 - 12) ÷ 4 + 10!\n1. Kerjakan dalam kurung dulu: 36 - 12 = 24.\n2. Lanjutkan pembagian: 24 ÷ 4 = 6.\n3. Terakhir jumlahkan: 6 + 10 = 16.",
+            options: ["16", "18", "20", "24"],
+            answer: 1,
+            explain: "Dalam kurung: (45 - 15) = 30. Lalu bagi: 30 ÷ 5 = 6. Terakhir tambah: 6 + 12 = 18."
+          },
+          {
+            apersepsi: "Menjelang tahun ajaran baru, Budi membeli 4 pak buku tulis di toko koperasi. Setelah dihitung total bukunya, Budi berbagi 7 buku kepada adiknya di rumah.",
+            svg: createMathIllustrationSVG("campuran", "(4 × 10) − 7 Buku", "📓"),
+            q: "Budi membeli 4 pak buku tulis. Setiap pak berisi 10 buku. Kemudian ia memberikan 7 buku kepada adiknya. Berapa buku Budi sekarang?",
+            studyExample: "🎯 Contoh Serupa: Lani membeli 3 kotak pensil (tiap kotak isi 12), lalu memberikan 5 pensil ke temannya.\n1. Kalikan total awal: 3 × 12 = 36 pensil.\n2. Kurangi yang diberikan: 36 - 5 = 31 pensil.",
+            options: ["31 buku", "33 buku", "35 buku", "47 buku"],
+            answer: 1,
+            explain: "Total buku yang dibeli: 4 × 10 = 40 buku. Dikurangi 7 buku untuk adiknya: 40 - 7 = 33 buku."
+          },
+          {
+            apersepsi: "Ibu membuat 100 kue donat coklat yang lezat. Sebanyak 28 donat disajikan untuk keluarga, lalu sisa donat dikemas sama rata ke dalam 9 kotak pesanan.",
+            svg: createMathIllustrationSVG("campuran", "(100 − 28) ÷ 9", "🍩"),
+            q: "Ibu membuat 100 kue donat. Sebanyak 28 donat dimakan keluarga di rumah, dan sisanya dimasukkan sama rata ke dalam 9 kotak. Berapa isi tiap kotak?",
+            studyExample: "🎯 Contoh Serupa: Ada 80 jeruk, 20 dimakan, sisanya dibagi ke 6 keranjang.\n1. Cari sisa jeruk dulu: 80 - 20 = 60 jeruk.\n2. Bagi rata ke keranjang: 60 ÷ 6 = 10 jeruk per keranjang.",
+            options: ["6 donat", "7 donat", "8 donat", "9 donat"],
             answer: 2,
-            explain: "Dari 2x^2 - 8x + 6 = 0 diperoleh a = 2, b = -8, c = 6. Maka x1 + x2 = -b/a = -(-8)/2 = 4."
-          },
-          {
-            q: "Berapakah nilai Diskriminan (D = b^2 - 4ac) dari persamaan kuadrat x^2 + 4x - 5 = 0?",
-            learn: "Contoh Serupa: Hitung Diskriminan dari x^2 + 6x - 2 = 0.\nCara Mengerjakan:\n1) Tentukan nilai a = 1, b = 6, dan c = -2.\n2) Masukkan ke rumus D = b^2 - 4ac:\n   D = (6)^2 - 4(1)(-2) = 36 - (-8) = 36 + 8 = 44.",
-            options: [
-              "-4",
-              "16",
-              "20",
-              "36"
-            ],
-            answer: 3,
-            explain: "a = 1, b = 4, c = -5. Maka D = b^2 - 4ac = (4)^2 - 4(1)(-5) = 16 + 20 = 36."
-          },
-          {
-            q: "Persamaan sumbu simetri dari grafik fungsi kuadrat f(x) = x^2 - 6x + 8 adalah...",
-            learn: "Contoh Serupa: Cari sumbu simetri dari f(x) = x^2 - 10x + 16.\nCara Mengerjakan:\n• Tentukan koefisien a = 1 dan b = -10.\n• Gunakan rumus sumbu simetri: x = -b / (2a).\n• Hitung: x = -(-10) / (2 × 1) = 10 / 2 = 5.",
-            options: [
-              "x = -3",
-              "x = 2",
-              "x = 3",
-              "x = 6"
-            ],
-            answer: 2,
-            explain: "Diketahui a = 1 dan b = -6. Sumbu simetri x = -b / (2a) = -(-6) / (2×1) = 6 / 2 = 3."
+            explain: "Cari sisa donat dulu: 100 - 28 = 72 donat. Lalu dibagi ke 9 kotak: 72 ÷ 9 = 8 donat per kotak."
           }
         ]
       }
     };
 
-    // Bank Soal Gulungan Matematika Kelas 9 di Dunia 3D (12 Tantangan dilengkapi Contoh Serupa)
+    // Bank Soal 12 Gulungan Matematika di Dunia 3D (Dilengkapi Apersepsi, Gambar SVG & Contoh Pelajari)
     const worldScrollChallenges = [
       {
-        q: "📜 GULUNGAN #1: Berapakah nilai dari 2^5 ÷ 2^2 ?",
-        learn: "Contoh Serupa: Hitung 3^6 ÷ 3^4.\nCara Mengerjakan: Karena basisnya sama-sama 3 dan operasinya pembagian, kurangi pangkatnya: 3^(6-4) = 3^2 = 9.",
-        options: ["4", "8", "16", "32"],
+        apersepsi: "Dua regu pramuka mengumpulkan ranting kayu kering untuk api unggun. Regu Elang mengumpulkan 68 ranting dan Regu Rajawali mengumpulkan 57 ranting.",
+        svg: createMathIllustrationSVG("penjumlahan", "68 + 57 = ?", "🪵"),
+        q: "📜 GULUNGAN #1 (Penjumlahan): Berapakah hasil dari 68 + 57?",
+        studyExample: "🎯 Contoh Serupa: Hitung 78 + 46!\n• Puluhan: 70 + 40 = 110\n• Satuan: 8 + 6 = 14\n• Total: 110 + 14 = 124.",
+        options: ["115", "125", "135", "126"],
         answer: 1,
-        explain: "2^5 ÷ 2^2 = 2^(5-2) = 2^3 = 8."
+        explain: "Puluhan: 60 + 50 = 110. Satuan: 8 + 7 = 15. Total: 110 + 15 = 125."
       },
       {
-        q: "📜 GULUNGAN #2: Bentuk sederhana dari √48 adalah...",
-        learn: "Contoh Serupa: Sederhanakan √32.\nCara Mengerjakan: Cari bilangan kuadrat terbesar yang membagi 32, yaitu 16. Maka √32 = √(16 × 2) = 4√2.",
-        options: ["2√12", "3√6", "4√3", "6√2"],
-        answer: 2,
-        explain: "√48 = √(16 × 3) = √16 × √3 = 4√3."
-      },
-      {
-        q: "📜 GULUNGAN #3: Nilai dari (7^3 × 4^5)^0 adalah...",
-        learn: "Contoh Serupa: Berapakah nilai dari (9^4 × 2^7)^0 ?\nCara Mengerjakan: Ingat sifat a^0 = 1. Berapapun hasil di dalam kurung (selama tidak nol), jika dipangkatkan 0 hasilnya pasti 1!",
-        options: ["0", "1", "7", "28"],
+        apersepsi: "Sebuah toko roti memanggang 120 roti manis di pagi hari. Menjelang siang, 48 roti telah dibeli oleh pelanggan.",
+        svg: createMathIllustrationSVG("pengurangan", "120 − 48 Roti", "🥐"),
+        q: "📜 GULUNGAN #2 (Pengurangan): Berapakah hasil dari 120 - 48?",
+        studyExample: "🎯 Contoh Serupa: Hitung 130 - 56!\n• Kurangi puluhan dulu: 130 - 50 = 80.\n• Kurangi satuannya: 80 - 6 = 74.",
+        options: ["62", "72", "82", "78"],
         answer: 1,
-        explain: "Semua bilangan tak nol yang dipangkatkan 0 hasilnya adalah 1."
+        explain: "120 - 40 = 80, lalu 80 - 8 = 72."
       },
       {
-        q: "📜 GULUNGAN #4: Bentuk biasa dari notasi ilmiah 3,4 × 10^4 adalah...",
-        learn: "Contoh Serupa: Ubah 5,2 × 10^3 ke bentuk biasa.\nCara Mengerjakan: Kalikan 5,2 dengan 1.000 (geser koma 3 langkah ke kanan) -> hasilnya 5.200.",
-        options: ["340", "3.400", "34.000", "340.000"],
+        apersepsi: "Di lapangan parkir sekolah berjajar 9 barisan sepeda siswa. Setiap barisan terdiri dari 8 sepeda yang diparkir rapi.",
+        svg: createMathIllustrationSVG("perkalian", "9 Baris × 8 Sepeda", "🚲"),
+        q: "📜 GULUNGAN #3 (Perkalian): Berapakah hasil dari 9 × 8?",
+        studyExample: "🎯 Contoh Serupa: Hitung 9 × 6!\n• Kalikan 10 dulu: 10 × 6 = 60.\n• Kurangi 6: 60 - 6 = 54.",
+        options: ["64", "72", "81", "74"],
+        answer: 1,
+        explain: "(10 × 8) - 8 = 80 - 8 = 72."
+      },
+      {
+        apersepsi: "Terdapat 84 bibit bunga mawar yang akan ditanam sama banyak ke dalam 7 petak taman sekolah.",
+        svg: createMathIllustrationSVG("pembagian", "84 ÷ 7 Petak", "🌹"),
+        q: "📜 GULUNGAN #4 (Pembagian): Berapakah hasil dari 84 ÷ 7?",
+        studyExample: "🎯 Contoh Serupa: Hitung 78 ÷ 6!\n• Pecah 78 menjadi 60 + 18.\n• (60 ÷ 6 = 10) + (18 ÷ 6 = 3) = 13.",
+        options: ["11", "12", "13", "14"],
+        answer: 1,
+        explain: "Pecah 84 menjadi 70 + 14. (70 ÷ 7 = 10) + (14 ÷ 7 = 2) = 12."
+      },
+      {
+        apersepsi: "Museum Kota dikunjungi 185 wisatawan pada hari Sabtu dan 115 wisatawan pada hari Minggu. Perhatikan bahwa 85 dan 15 pas membentuk 100!",
+        svg: createMathIllustrationSVG("penjumlahan", "185 + 115 = ?", "🎟️"),
+        q: "📜 GULUNGAN #5 (Penjumlahan): Berapakah hasil dari 185 + 115?",
+        studyExample: "🎯 Contoh Serupa: Hitung 275 + 125!\n• Ratusan: 200 + 100 = 300.\n• Puluhan & satuan: 75 + 25 = 100.\n• Total: 300 + 100 = 400.",
+        options: ["290", "300", "310", "280"],
+        answer: 1,
+        explain: "100 + 100 = 200, dan 85 + 15 = 100. Jadi 200 + 100 = 300."
+      },
+      {
+        apersepsi: "Sebuah tangki penampungan berisi 250 liter air bersih. Sebanyak 85 liter air digunakan untuk menyiram tanaman di taman sekolah.",
+        svg: createMathIllustrationSVG("pengurangan", "250 − 85 Liter", "💧"),
+        q: "📜 GULUNGAN #6 (Pengurangan): Berapakah hasil dari 250 - 85?",
+        studyExample: "🎯 Contoh Serupa: Hitung 240 - 75!\n• 240 - 70 = 170.\n• 170 - 5 = 165.",
+        options: ["155", "165", "175", "145"],
+        answer: 1,
+        explain: "250 - 80 = 170, kemudian 170 - 5 = 165."
+      },
+      {
+        apersepsi: "Setiap kotak krayon berisi 16 batang warna. Siti membeli 5 kotak krayon untuk hadiah lomba menggambar.",
+        svg: createMathIllustrationSVG("perkalian", "16 × 5 Kotak", "🎨"),
+        q: "📜 GULUNGAN #7 (Perkalian): Berapakah hasil dari 16 × 5?",
+        studyExample: "🎯 Contoh Serupa: Hitung 18 × 5!\n• Pecah 18 menjadi 10 + 8.\n• (10 × 5 = 50) + (8 × 5 = 40) = 90.",
+        options: ["70", "75", "80", "85"],
         answer: 2,
-        explain: "3,4 × 10^4 = 3,4 × 10.000 = 34.000."
+        explain: "(10 × 5 = 50) + (6 × 5 = 30) = 80."
       },
       {
-        q: "📜 GULUNGAN #5: Hasil dari penjabaran (x + 5)^2 adalah...",
-        learn: "Contoh Serupa: Jabarkan (x + 3)^2.\nCara Mengerjakan: Gunakan rumus (a + b)^2 = a^2 + 2ab + b^2.\nMaka (x + 3)^2 = x^2 + 2(x)(3) + 3^2 = x^2 + 6x + 9.",
-        options: [
-          "x^2 + 25",
-          "x^2 + 5x + 25",
-          "x^2 + 10x + 25",
-          "x^2 + 10x + 10"
-        ],
-        answer: 2,
-        explain: "(x + 5)^2 = x^2 + 2(5)(x) + 5^2 = x^2 + 10x + 25."
+        apersepsi: "Sebanyak 144 botol susu segar akan disusun secara merata ke dalam 12 krat penyimpanan.",
+        svg: createMathIllustrationSVG("pembagian", "144 ÷ 12 Krat", "🥛"),
+        q: "📜 GULUNGAN #8 (Pembagian): Berapakah hasil dari 144 ÷ 12?",
+        studyExample: "🎯 Contoh Serupa: Hitung 132 ÷ 12!\n• Pecah 132 menjadi 120 + 12.\n• (120 ÷ 12 = 10) + (12 ÷ 12 = 1) = 11.",
+        options: ["11", "12", "13", "14"],
+        answer: 1,
+        explain: "Pecah 144 menjadi 120 + 24. (120 ÷ 12 = 10) + (24 ÷ 12 = 2) = 12."
       },
       {
-        q: "📜 GULUNGAN #6: Hasil dari 3^(-2) adalah...",
-        learn: "Contoh Serupa: Berapakah hasil dari 4^(-2) ?\nCara Mengerjakan: Sifat pangkat negatif a^(-n) = 1 / a^n. Jadi 4^(-2) = 1 / 4^2 = 1/16.",
-        options: ["-6", "-9", "1/6", "1/9"],
-        answer: 3,
-        explain: "3^(-2) = 1 / (3^2) = 1/9."
-      },
-      {
-        q: "📜 GULUNGAN #7: Hasil dari 4√5 + 2√5 - √5 adalah...",
-        learn: "Contoh Serupa: Hitung 6√2 + 3√2 - √2.\nCara Mengerjakan: Karena akarnya sudah sejenis (√2), hitung angka di depannya saja (ingat -√2 artinya -1√2): (6 + 3 - 1)√2 = 8√2.",
-        options: ["5√5", "6√5", "5√15", "6"],
+        apersepsi: "Rani membawa uang 50 koin emas. Ia membeli 7 tiket wahana yang masing-masing berharga 5 koin emas. Hitung total harga tiketnya terlebih dahulu!",
+        svg: createMathIllustrationSVG("campuran", "50 − (7 × 5)", "🎡"),
+        q: "📜 GULUNGAN #9 (Operasi Campuran): Berapakah hasil dari 50 - 7 × 5?",
+        studyExample: "🎯 Contoh Serupa: Hitung 40 - 6 × 4!\n• Kerjakan perkalian dulu: 6 × 4 = 24.\n• Baru kurangi: 40 - 24 = 16.",
+        options: ["15", "25", "215", "35"],
         answer: 0,
-        explain: "(4 + 2 - 1)√5 = 5√5."
+        explain: "Kalikan dulu 7 × 5 = 35. Lalu kurangi: 50 - 35 = 15."
       },
       {
-        q: "📜 GULUNGAN #8: Jika x1 dan x2 akar-akar dari x^2 - 6x + 8 = 0, berapakah nilai hasil kali akar (x1 × x2)?",
-        learn: "Contoh Serupa: Tentukan nilai x1 × x2 dari persamaan x^2 - 5x + 12 = 0.\nCara Mengerjakan: Rumus hasil kali akar adalah c / a. Di sini a = 1 dan c = 12, maka x1 × x2 = 12 / 1 = 12.",
-        options: ["-6", "6", "8", "-8"],
-        answer: 2,
-        explain: "Pada x^2 - 6x + 8 = 0, nilai a = 1, b = -6, c = 8. Rumus x1 × x2 = c/a = 8/1 = 8."
-      },
-      {
-        q: "📜 GULUNGAN #9: Diketahui fungsi f(x) = x^2 + 2x - 3. Nilai dari f(2) adalah...",
-        learn: "Contoh Serupa: Diketahui f(x) = x^2 + 3x - 4. Hitunglah f(2)!\nCara Mengerjakan: Ganti setiap huruf x dengan angka 2:\nf(2) = (2)^2 + 3(2) - 4 = 4 + 6 - 4 = 6.",
-        options: ["3", "5", "7", "9"],
+        apersepsi: "Lemari kaca di ruang kepala sekolah memiliki 7 tingkat rak. Setiap tingkat memajang 15 piala kejuaraan siswa.",
+        svg: createMathIllustrationSVG("perkalian", "7 Rak × 15 Piala", "🏆"),
+        q: "📜 GULUNGAN #10 (Perkalian Cerita): Sebuah rak memiliki 7 baris. Setiap baris memuat 15 piala. Berapa total piala di rak itu?",
+        studyExample: "🎯 Contoh Serupa: 6 baris × 14 piala:\n• (6 × 10 = 60) + (6 × 4 = 24) = 84 piala.",
+        options: ["95 piala", "105 piala", "115 piala", "100 piala"],
         answer: 1,
-        explain: "Substitusikan x = 2: f(2) = (2)^2 + 2(2) - 3 = 4 + 4 - 3 = 5."
+        explain: "7 × 15 = (7 × 10) + (7 × 5) = 70 + 35 = 105 piala."
       },
       {
-        q: "📜 GULUNGAN #10: Nilai x yang memenuhi persamaan 2^x = 32 adalah...",
-        learn: "Contoh Serupa: Cari nilai x jika 3^x = 27.\nCara Mengerjakan: Ubah ruas kanan menjadi bilangan berpangkat dengan basis 3 -> 27 = 3^3. Karena 3^x = 3^3, maka x = 3.",
-        options: ["x = 4", "x = 5", "x = 6", "x = 16"],
+        apersepsi: "Ayah baru saja memanen 108 buah jeruk manis dari kebun belakang dan ingin membaginya sama rata ke dalam 9 kantong ramah lingkungan.",
+        svg: createMathIllustrationSVG("pembagian", "108 ÷ 9 Kantong", "🍊"),
+        q: "📜 GULUNGAN #11 (Pembagian Cerita): Ayah memetik 108 buah jeruk dan membaginya sama rata ke dalam 9 kantong. Berapa jeruk di tiap kantong?",
+        studyExample: "🎯 Contoh Serupa: 96 jeruk dibagi ke 8 kantong:\n• Pecah 96 = 80 + 16.\n• (80 ÷ 8 = 10) + (16 ÷ 8 = 2) = 12 jeruk.",
+        options: ["11 jeruk", "12 jeruk", "13 jeruk", "14 jeruk"],
         answer: 1,
-        explain: "Karena 32 = 2^5, maka 2^x = 2^5 sehingga x = 5."
+        explain: "108 ÷ 9 -> Pecah menjadi (90 ÷ 9 = 10) + (18 ÷ 9 = 2) = 12 jeruk."
       },
       {
-        q: "📜 GULUNGAN #11: Pemfaktoran dari bentuk aljabar 3x^2 + 6x adalah...",
-        learn: "Contoh Serupa: Faktorkanlah 4x^2 + 8x.\nCara Mengerjakan: Keluarkan FPB dari kedua suku yaitu 4x:\n4x^2 + 8x = 4x(x + 2).",
-        options: ["3x(x + 2)", "3(x^2 + 6)", "3x(x + 6)", "x(3x + 2)"],
-        answer: 0,
-        explain: "FPB dari 3x^2 dan 6x adalah 3x. Jika dikeluarkan menjadi 3x(x + 2)."
-      },
-      {
-        q: "📜 GULUNGAN #12: Titik potong grafik fungsi kuadrat f(x) = x^2 - 4x + 7 terhadap sumbu-Y adalah...",
-        learn: "Contoh Serupa: Tentukan titik potong sumbu-Y dari f(x) = x^2 - 5x + 9.\nCara Mengerjakan: Titik potong sumbu-Y diperoleh saat x = 0, yaitu pada koordinat (0, c). Karena c = 9, maka titik potongnya (0, 9).",
-        options: ["(0, -4)", "(0, 4)", "(0, 7)", "(7, 0)"],
+        apersepsi: "Di setiap kelompok belajar terdapat 18 siswa laki-laki dan 22 siswa perempuan. Terdapat 3 kelompok belajar dengan komposisi yang sama.",
+        svg: createMathIllustrationSVG("campuran", "(18 + 22) × 3", "👥"),
+        q: "📜 GULUNGAN #12 (Operasi Campuran): Berapakah hasil dari (18 + 22) × 3?",
+        studyExample: "🎯 Contoh Serupa: Hitung (14 + 16) × 4!\n• Kerjakan dalam kurung dulu: 14 + 16 = 30.\n• Kalikan: 30 × 4 = 120.",
+        options: ["100", "110", "120", "130"],
         answer: 2,
-        explain: "Titik potong sumbu-Y terjadi saat x = 0: f(0) = 0^2 - 4(0) + 7 = 7. Jadi koordinatnya (0, 7)."
+        explain: "Jumlahkan dalam kurung dulu: 18 + 22 = 40. Lalu kalikan: 40 × 3 = 120."
       }
     ];
 
@@ -2235,11 +2363,10 @@
        ===================================================================== */
     const TEACHER_ADMIN_TOKEN = "GURU123";
 
-    // Buat ID unik per tab/perangkat agar banyak murid (termasuk di jaringan/browser yang sama) tidak saling menimpa
-    let mySessionId = sessionStorage.getItem("roblox_math9_player_id");
+    let mySessionId = sessionStorage.getItem("roblox_math_player_id");
     if (!mySessionId) {
       mySessionId = "player_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 8);
-      sessionStorage.setItem("roblox_math9_player_id", mySessionId);
+      sessionStorage.setItem("roblox_math_player_id", mySessionId);
     }
 
     window.gameState = {
@@ -2248,8 +2375,8 @@
       myColor: "#EF4444",
       myScore: 0,
       myLevel: 1,
-      playMode: "team", // 'personal' atau 'team'
-      roomCode: "MATEMATIKA9",
+      playMode: "team",
+      roomCode: "MATEMATIKA1",
       role: "student",
       isTeacherVerified: false,
       hasJoinedGame: false,
@@ -2263,15 +2390,13 @@
       activeTurnIndex: 0,
       scrollsFound: 0,
       totalScrolls: 12,
-      uniform: "smp",
+      uniform: "sd",
       accessory: "none",
       curriculum: defaultCurriculum
     };
     const gameState = window.gameState;
 
-    // Daftar pemain online di dalam kode kelas yang sama
     let onlinePlayersMap = {}; 
-    // Map mesh 3D untuk pemain lain yang bergabung di ruangan
     const remotePlayerRigs = {};
 
     function calcLevelFromScore(score) {
@@ -2330,10 +2455,6 @@
       }
     }
 
-    function switchLobbyRole(role) {
-      switchLobbyMode(role === 'teacher' ? 'teacher' : 'team');
-    }
-
     function verifyTeacherTokenLobby() {
       const tokenVal = document.getElementById('input-admin-token').value.trim();
       const statusMsg = document.getElementById('token-status-msg');
@@ -2366,7 +2487,7 @@
         return;
       }
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      let code = "KELAS9";
+      let code = "MAT";
       for (let i = 0; i < 3; i++) {
         code += chars.charAt(Math.floor(Math.random() * chars.length));
       }
@@ -2379,7 +2500,7 @@
 
     function randomizeTeacherModalCode() {
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      let code = "KELAS9";
+      let code = "MAT";
       for (let i = 0; i < 3; i++) {
         code += chars.charAt(Math.floor(Math.random() * chars.length));
       }
@@ -2431,8 +2552,8 @@
 
     function joinMultiplayerRoom() {
       const nameInput = document.getElementById('input-player-name').value.trim() || "Siswa_" + Math.floor(10 + Math.random() * 89);
-      const rawCode = (document.getElementById('input-room-code').value.trim() || gameState.roomCode || "MATEMATIKA9").toUpperCase();
-      const codeInput = rawCode.replace(/[^A-Z0-9]/gi, '') || "MATEMATIKA9";
+      const rawCode = (document.getElementById('input-room-code').value.trim() || gameState.roomCode || "MATEMATIKA1").toUpperCase();
+      const codeInput = rawCode.replace(/[^A-Z0-9]/gi, '') || "MATEMATIKA1";
 
       gameState.myName = nameInput;
       gameState.hasJoinedGame = true;
@@ -2487,7 +2608,7 @@
         window.connectToCloudRoom(gameState.roomCode);
         showToast(`🤝 Bergabung ke Tim [${gameState.roomCode}] sebagai ${gameState.myName}!`, "🌐");
       } else {
-        showToast(`👤 Memulai Petualangan Personal sebagai ${gameState.myName}!`, "🚀");
+        showToast(`👤 Memulai Petualangan Matematika sebagai ${gameState.myName}!`, "🚀");
       }
     }
 
@@ -2543,7 +2664,7 @@
     }
 
     /* =====================================================================
-       4. ENGINE 3D THREE.JS & DUNIA PETUALANGAN MATEMATIKA KELAS 9
+       4. ENGINE 3D THREE.JS & DUNIA PETUALANGAN MATEMATIKA
        ===================================================================== */
     const canvas = document.getElementById('game-canvas');
     const scene = new THREE.Scene();
@@ -2647,7 +2768,6 @@
     }
     createRoadGrid();
 
-    // Air Mancur Alun-Alun
     function createCitySquare() {
       const squareGroup = new THREE.Group();
       const plaza = new THREE.Mesh(new THREE.CylinderGeometry(15, 15, 0.25, 32), materials.sidewalk);
@@ -2686,7 +2806,6 @@
     }
     createCitySquare();
 
-    // Pepohonan
     for (let i = 0; i < 28; i++) {
       const x = (Math.random() - 0.5) * 180;
       const z = (Math.random() - 0.5) * 180;
@@ -2708,7 +2827,6 @@
       scene.add(tree);
     }
 
-    // Billboard Tekstur
     function createBillboardTexture(titleText, colorHex) {
       const c = document.createElement('canvas');
       c.width = 512;
@@ -2729,13 +2847,12 @@
       return new THREE.CanvasTexture(c);
     }
 
-    // 5 Pos Gedung Tantangan Matematika Kelas 9
     const buildingData = [
-      { key: "cari_kalimat", name: "Pos 1: Eksponen", color: 0xEF4444, hex: "#EF4444", pos: [40, 0, 40], rot: -Math.PI / 4, icon: "🔢" },
-      { key: "perbaiki_kalimat", name: "Pos 2: Bentuk Akar", color: 0x3B82F6, hex: "#3B82F6", pos: [-40, 0, 40], rot: Math.PI / 4, icon: "🛠️" },
-      { key: "regular_verb", name: "Pos 3: Notasi Ilmiah", color: 0xF59E0B, hex: "#F59E0B", pos: [-40, 0, -40], rot: 3 * Math.PI / 4, icon: "📘" },
-      { key: "irregular_verb", name: "Pos 4: Pemfaktoran", color: 0x8B5CF6, hex: "#8B5CF6", pos: [40, 0, -40], rot: -3 * Math.PI / 4, icon: "⚡" },
-      { key: "negatif_tanya", name: "Pos 5: Kuadrat", color: 0x10B981, hex: "#10B981", pos: [0, 0, -56], rot: Math.PI, icon: "🏛️" }
+      { key: "penjumlahan", name: "Pos 1: Penjumlahan (+)", color: 0xEF4444, hex: "#EF4444", pos: [40, 0, 40], rot: -Math.PI / 4, icon: "➕" },
+      { key: "pengurangan", name: "Pos 2: Pengurangan (-)", color: 0x3B82F6, hex: "#3B82F6", pos: [-40, 0, 40], rot: Math.PI / 4, icon: "➖" },
+      { key: "perkalian", name: "Pos 3: Perkalian (×)", color: 0xF59E0B, hex: "#F59E0B", pos: [-40, 0, -40], rot: 3 * Math.PI / 4, icon: "✖️" },
+      { key: "pembagian", name: "Pos 4: Pembagian (÷)", color: 0x8B5CF6, hex: "#8B5CF6", pos: [40, 0, -40], rot: -3 * Math.PI / 4, icon: "➗" },
+      { key: "campuran", name: "Pos 5: Operasi Campuran", color: 0x10B981, hex: "#10B981", pos: [0, 0, -56], rot: Math.PI, icon: "🏛️" }
     ];
 
     buildingData.forEach(b => {
@@ -2782,7 +2899,6 @@
       });
     });
 
-    // Spawn 12 Gulungan Rumus Matematika & Koin Bonus di Dunia 3D
     function spawnWorldScrollsAndCoins() {
       const scrollPositions = [
         [18, 18], [-18, 18], [-18, -18], [18, -18],
@@ -2824,7 +2940,6 @@
     }
     spawnWorldScrollsAndCoins();
 
-    // NPC Petunjuk Matematika Kelas 9
     function createNPC(name, x, z, dialogue) {
       const npcGroup = new THREE.Group();
       const body = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.1, 0.6), new THREE.MeshLambertMaterial({ color: 0x0284C7 }));
@@ -2861,8 +2976,8 @@
       npcs.push({ group: npcGroup, exMesh: exMesh });
     }
 
-    createNPC("Pak Budi (Guru Matematika Kelas 9)", 11, 12, "Saat mengerjakan soal Bilangan Berpangkat, Bentuk Akar, atau Aljabar, klik tombol '💡 Pelajari Cara Mengerjakan' untuk melihat contoh soal serupa beserta langkah penyelesaiannya!");
-    createNPC("Rani (Penjaga Sertifikat)", -11, 12, "Kumpulkan 12 Gulungan Kuning di jalanan kota dan taklukkan 5 Pos Matematika! Peraih skor tertinggi bisa langsung mengunduh Sertifikat Juara PNG & PDF!");
+    createNPC("Pak Budi (Guru Matematika)", 11, 12, "Gunakan tombol 💡 Pelajari saat menjawab soal! Waktu akan otomatis berhenti sementara agar kamu bisa mempelajari cara menghitungnya dengan tenang.");
+    createNPC("Kak Rani (Penjaga Sertifikat)", -11, 12, "Kumpulkan 12 Gulungan Angka di jalanan kota dan selesaikan 5 Pos Matematika! Peraih skor tertinggi bisa mengunduh Sertifikat Juara PNG & PDF!");
 
     /* =====================================================================
        5. KARAKTER PEMAIN LOKAL & PEMAIN MULTIPLAYER ONLINE 3D
@@ -2990,7 +3105,7 @@
     }
 
     const partyRigs = [
-      buildCharacterRig(0xEF4444, 0x2563EB, "Petualang Cerdas", "#EF4444", 1, 0)
+      buildCharacterRig(0xEF4444, 0x1E293B, "Petualang Cerdas", "#EF4444", 1, 0)
     ];
 
     partyRigs[0].group.position.set(0, 0, 20);
@@ -3019,17 +3134,16 @@
       if (rig.footRing) rig.footRing.material.color.setStyle(gameState.myColor);
     }
 
-    // Presets Seragam
     const outfitPresets = {
       sd: { name: "Tim Merah-Biru", shirt: 0xEF4444, pants: 0x1E293B, icon: "🎒" },
-      smp: { name: "Seragam SMP Kelas 9", shirt: 0xFFFFFF, pants: 0x2563EB, icon: "📘" },
+      smp: { name: "Seragam SMP", shirt: 0xFFFFFF, pants: 0x2563EB, icon: "📘" },
       sma: { name: "Seragam SMA", shirt: 0xFFFFFF, pants: 0x64748B, icon: "🎓" },
       pramuka: { name: "Pramuka Keren", shirt: 0xD97706, pants: 0x78350F, icon: "🏕️" },
       batik: { name: "Batik Nusantara", shirt: 0x9333EA, pants: 0x1E293B, icon: "✨" }
     };
 
     function applyOutfit(key) {
-      const preset = outfitPresets[key] || outfitPresets.smp;
+      const preset = outfitPresets[key] || outfitPresets.sd;
       partyRigs[0].mats.shirt.color.setHex(preset.shirt);
       partyRigs[0].mats.pants.color.setHex(preset.pants);
       gameState.uniform = key;
@@ -3306,7 +3420,7 @@
     }
 
     /* =====================================================================
-       7. UPDATE FISIKA TIM & DETEKSI GULUNGAN SOAL
+       7. UPDATE FISIKA PEMAIN & DETEKSI GULUNGAN MATEMATIKA
        ===================================================================== */
     const playerState = {
       velocityY: 0,
@@ -3486,56 +3600,141 @@
     }
 
     /* =====================================================================
-       8. SISTEM MODAL POS KUIS, FITUR PELAJARI & GULUNGAN MATEMATIKA
+       8. SISTEM MODAL POS KUIS, TOMBOL PELAJARI (JEDA WAKTU) & GULUNGAN MATEMATIKA
        ===================================================================== */
     let currentBuildingKey = null;
     let quizSession = {
       questions: [],
       currentIndex: 0,
-      timer: 45,
-      timerInterval: null
+      timer: 60,
+      timerInterval: null,
+      isTimerPaused: false,
+      isAnswered: false
     };
 
-    function toggleQuizLearn() {
-      const box = document.getElementById('quiz-learn-box');
-      const label = document.getElementById('btn-quiz-learn-label');
-      const isHidden = box.style.display === 'none' || box.style.display === '';
-      box.style.display = isHidden ? 'block' : 'none';
-      label.innerText = isHidden
-        ? "Sembunyikan Cara Mengerjakan"
-        : "Pelajari Cara Mengerjakan (Contoh Serupa)";
-      if (isHidden) audio.playCoin();
+    let scrollSession = {
+      timer: 60,
+      timerInterval: null,
+      isTimerPaused: false,
+      isAnswered: false
+    };
+
+    function updateQuizTimerBadge() {
+      const timerEl = document.getElementById('quiz-timer');
+      if (!timerEl) return;
+      if (quizSession.isTimerPaused) {
+        timerEl.classList.remove('warning');
+        timerEl.classList.add('paused');
+        timerEl.innerText = `⏸️ Dijeda (${quizSession.timer}s)`;
+      } else {
+        timerEl.classList.remove('paused');
+        if (quizSession.timer <= 10) timerEl.classList.add('warning');
+        else timerEl.classList.remove('warning');
+        timerEl.innerText = `⏱️ ${quizSession.timer}s`;
+      }
     }
 
-    function toggleScrollLearn() {
-      const box = document.getElementById('scroll-learn-box');
-      const label = document.getElementById('btn-scroll-learn-label');
-      const isHidden = box.style.display === 'none' || box.style.display === '';
-      box.style.display = isHidden ? 'block' : 'none';
-      label.innerText = isHidden
-        ? "Sembunyikan Cara Mengerjakan"
-        : "Pelajari Cara Mengerjakan (Contoh Serupa)";
-      if (isHidden) audio.playCoin();
+    function updateScrollTimerBadge() {
+      const timerEl = document.getElementById('scroll-timer');
+      if (!timerEl) return;
+      if (scrollSession.isTimerPaused) {
+        timerEl.classList.remove('warning');
+        timerEl.classList.add('paused');
+        timerEl.innerText = `⏸️ Dijeda (${scrollSession.timer}s)`;
+      } else {
+        timerEl.classList.remove('paused');
+        if (scrollSession.timer <= 10) timerEl.classList.add('warning');
+        else timerEl.classList.remove('warning');
+        timerEl.innerText = `⏱️ ${scrollSession.timer}s`;
+      }
+    }
+
+    function toggleQuizStudyCard() {
+      const card = document.getElementById('quiz-study-card');
+      const btn = document.getElementById('btn-quiz-study-toggle');
+      const hintLabel = document.getElementById('quiz-study-hint-label');
+      const isShowing = card.style.display === 'block';
+
+      if (!isShowing) {
+        card.style.display = 'block';
+        quizSession.isTimerPaused = true;
+        if (btn) btn.innerHTML = `<span>▶️ Tutup Cara Mengerjakan &amp; Lanjutkan Waktu</span>`;
+        if (hintLabel) hintLabel.innerText = "⏸️ Waktu sedang dijeda agar kamu bisa belajar";
+        audio.playCoin();
+      } else {
+        card.style.display = 'none';
+        quizSession.isTimerPaused = false;
+        if (btn) btn.innerHTML = `<span>💡 Pelajari Cara Mengerjakan (Waktu Dijeda Saat Dibuka)</span>`;
+        if (hintLabel) hintLabel.innerText = "▶️ Waktu berlanjut kembali";
+      }
+      updateQuizTimerBadge();
+    }
+
+    function toggleScrollStudyCard() {
+      const card = document.getElementById('scroll-study-card');
+      const btn = document.getElementById('btn-scroll-study-toggle');
+      const hintLabel = document.getElementById('scroll-study-hint-label');
+      const isShowing = card.style.display === 'block';
+
+      if (!isShowing) {
+        card.style.display = 'block';
+        scrollSession.isTimerPaused = true;
+        if (btn) btn.innerHTML = `<span>▶️ Tutup Cara Mengerjakan &amp; Lanjutkan Waktu</span>`;
+        if (hintLabel) hintLabel.innerText = "⏸️ Waktu sedang dijeda agar kamu bisa belajar";
+        audio.playCoin();
+      } else {
+        card.style.display = 'none';
+        scrollSession.isTimerPaused = false;
+        if (btn) btn.innerHTML = `<span>💡 Pelajari Cara Mengerjakan (Waktu Dijeda Saat Dibuka)</span>`;
+        if (hintLabel) hintLabel.innerText = "▶️ Waktu berlanjut kembali";
+      }
+      updateScrollTimerBadge();
     }
 
     function openScrollChallengeModal(challengeIdx) {
       const ch = worldScrollChallenges[challengeIdx % worldScrollChallenges.length];
       document.getElementById('scroll-player-name').innerText = `${gameState.myName} (LVL ${gameState.myLevel})`;
+      document.getElementById('scroll-apersepsi-text').innerText = ch.apersepsi || "Perhatikan cerita dan ilustrasi matematika berikut sebelum menghitung jawabannya.";
+      document.getElementById('scroll-apersepsi-svg').innerHTML = ch.svg || createMathIllustrationSVG("campuran", "Tantangan Angka", "📜");
       document.getElementById('scroll-question').innerText = ch.q;
-      document.getElementById('scroll-learn-text').innerText = ch.learn || "Gunakan konsep pangkat dan pemfaktoran aljabar yang telah dipelajari.";
-      document.getElementById('scroll-learn-box').style.display = 'none';
-      document.getElementById('btn-scroll-learn-label').innerText = "Pelajari Cara Mengerjakan (Contoh Serupa)";
+      document.getElementById('scroll-study-text').innerText = ch.studyExample || "Perhatikan tanda operasi hitung dan pecah angka menjadi puluhan serta satuan untuk mempermudah perhitungan.";
+      document.getElementById('scroll-study-card').style.display = 'none';
+      document.getElementById('btn-scroll-study-toggle').innerHTML = `<span>💡 Pelajari Cara Mengerjakan (Waktu Dijeda Saat Dibuka)</span>`;
+      document.getElementById('scroll-study-hint-label').innerText = "⏸️ Waktu berhenti saat belajar";
       document.getElementById('scroll-explanation').style.display = 'none';
       document.getElementById('scroll-done-btn').style.display = 'none';
 
       const optBox = document.getElementById('scroll-options');
       optBox.innerHTML = '';
 
+      clearInterval(scrollSession.timerInterval);
+      scrollSession.timer = 60;
+      scrollSession.isTimerPaused = false;
+      scrollSession.isAnswered = false;
+      updateScrollTimerBadge();
+
+      scrollSession.timerInterval = setInterval(() => {
+        if (scrollSession.isTimerPaused || scrollSession.isAnswered) return;
+        scrollSession.timer--;
+        updateScrollTimerBadge();
+        if (scrollSession.timer <= 0) {
+          clearInterval(scrollSession.timerInterval);
+          scrollSession.isAnswered = true;
+          audio.playWrong();
+          showToast("⏰ Waktu 1 menit habis! Tidak mendapat poin dan tantangan gulungan dilewati.", "⚠️");
+          closeModal('modal-scroll');
+        }
+      }, 1000);
+
       ch.options.forEach((opt, idx) => {
         const btn = document.createElement('button');
         btn.className = 'answer-btn';
         btn.innerHTML = `<span style="font-weight:900; color:#818cf8;">${String.fromCharCode(65 + idx)}.</span> ${opt}`;
         btn.onclick = () => {
+          if (scrollSession.isAnswered) return;
+          scrollSession.isAnswered = true;
+          clearInterval(scrollSession.timerInterval);
+
           const allBtns = optBox.querySelectorAll('.answer-btn');
           allBtns.forEach(b => b.disabled = true);
 
@@ -3548,7 +3747,7 @@
             audio.playWrong();
             btn.classList.add('wrong');
             if (allBtns[ch.answer]) allBtns[ch.answer].classList.add('correct');
-            showToast(`Kurang tepat! Mari baca pembahasannya.`, "💡");
+            showToast(`Kurang tepat! Mari pelajari pembahasannya.`, "💡");
           }
 
           document.getElementById('scroll-explanation-text').innerText = ch.explain;
@@ -3568,7 +3767,6 @@
 
       document.getElementById('building-modal-icon').innerText = curData.icon || "🏛️";
       document.getElementById('building-modal-title').innerText = curData.title;
-      document.getElementById('materi-text').style.whiteSpace = 'pre-line';
       document.getElementById('materi-text').innerText = curData.materi;
 
       switchBuildingTab('materi');
@@ -3591,8 +3789,9 @@
       quizSession.currentIndex = 0;
 
       document.getElementById('quiz-summary').style.display = 'none';
+      document.getElementById('quiz-apersepsi-box').style.display = 'flex';
       document.getElementById('quiz-question').style.display = 'block';
-      document.getElementById('btn-quiz-learn').style.display = 'flex';
+      document.getElementById('quiz-study-bar').style.display = 'flex';
       document.getElementById('quiz-options').style.display = 'flex';
       document.querySelector('.quiz-stats').style.display = 'flex';
       document.getElementById('quiz-turn-indicator').style.display = 'flex';
@@ -3604,14 +3803,13 @@
       const qData = quizSession.questions[quizSession.currentIndex];
       document.getElementById('quiz-current-player-name').innerText = `${gameState.myName} (LVL ${gameState.myLevel})`;
       document.getElementById('quiz-question-counter').innerText = `Soal ${quizSession.currentIndex + 1} / ${quizSession.questions.length}`;
+      document.getElementById('quiz-apersepsi-text').innerText = qData.apersepsi || "Amati ilustrasi dan cerita pengantar di samping untuk memahami maksud soal matematika di bawah ini.";
+      document.getElementById('quiz-apersepsi-svg').innerHTML = qData.svg || createMathIllustrationSVG(currentBuildingKey || "campuran", `Soal #${quizSession.currentIndex + 1}`, "🧮");
       document.getElementById('quiz-question').innerText = `${quizSession.currentIndex + 1}. ${qData.q}`;
-      
-      // Setel ulang tampilan kotak Pelajari Cara Mengerjakan
-      document.getElementById('quiz-learn-text').style.whiteSpace = 'pre-line';
-      document.getElementById('quiz-learn-text').innerText = qData.learn || "Perhatikan rumus pada tab Konsep & Rumus, lalu hitung secara bertahap.";
-      document.getElementById('quiz-learn-box').style.display = 'none';
-      document.getElementById('btn-quiz-learn-label').innerText = "Pelajari Cara Mengerjakan (Contoh Serupa)";
-
+      document.getElementById('quiz-study-text').innerText = qData.studyExample || "Pecah bilangan menjadi puluhan dan satuan agar lebih mudah dihitung langkah demi langkah.";
+      document.getElementById('quiz-study-card').style.display = 'none';
+      document.getElementById('btn-quiz-study-toggle').innerHTML = `<span>💡 Pelajari Cara Mengerjakan (Waktu Dijeda Saat Dibuka)</span>`;
+      document.getElementById('quiz-study-hint-label').innerText = "⏸️ Waktu berhenti saat belajar";
       document.getElementById('quiz-explanation').style.display = 'none';
       document.getElementById('quiz-next-btn').style.display = 'none';
 
@@ -3627,23 +3825,37 @@
       });
 
       clearInterval(quizSession.timerInterval);
-      quizSession.timer = 45;
-      const timerEl = document.getElementById('quiz-timer');
-      timerEl.classList.remove('warning');
-      timerEl.innerText = `⏱️ ${quizSession.timer}s`;
+      quizSession.timer = 60;
+      quizSession.isTimerPaused = false;
+      quizSession.isAnswered = false;
+      updateQuizTimerBadge();
 
       quizSession.timerInterval = setInterval(() => {
+        if (quizSession.isTimerPaused || quizSession.isAnswered) return;
         quizSession.timer--;
-        timerEl.innerText = `⏱️ ${quizSession.timer}s`;
-        if (quizSession.timer <= 8) timerEl.classList.add('warning');
+        updateQuizTimerBadge();
         if (quizSession.timer <= 0) {
           clearInterval(quizSession.timerInterval);
-          selectAnswer(-1);
+          handleQuestionTimeoutSkip();
         }
       }, 1000);
     }
 
+    function handleQuestionTimeoutSkip() {
+      quizSession.isAnswered = true;
+      audio.playWrong();
+      showToast("⏰ Waktu 1 menit habis! Tidak mendapat poin (0 Poin) & soal dilewati.", "⏭️");
+      if (quizSession.currentIndex >= quizSession.questions.length - 1) {
+        finishQuiz();
+      } else {
+        quizSession.currentIndex++;
+        loadQuestion();
+      }
+    }
+
     function selectAnswer(chosenIdx) {
+      if (quizSession.isAnswered) return;
+      quizSession.isAnswered = true;
       clearInterval(quizSession.timerInterval);
       const qData = quizSession.questions[quizSession.currentIndex];
       const buttons = document.querySelectorAll('#quiz-options .answer-btn');
@@ -3881,6 +4093,14 @@
       document.getElementById('chat-toggle-icon').innerText = isMin ? '▲' : '▼';
     }
 
+    function toggleScoreboardWidget() {
+      const w = document.getElementById('party-scoreboard-widget');
+      if (!w) return;
+      const isMin = w.classList.toggle('minimized');
+      const icon = document.getElementById('scoreboard-toggle-icon');
+      if (icon) icon.innerText = isMin ? '▲' : '▼';
+    }
+
     function appendChatLog(senderName, senderColor, messageText, isVoice = false) {
       const box = document.getElementById('chat-messages-box');
       if (!box) return;
@@ -3957,7 +4177,7 @@
     }
 
     /* =====================================================================
-       9C. GENERATOR SERTIFIKAT JUARA MATEMATIKA KELAS 9 (PNG & PDF)
+       9C. GENERATOR SERTIFIKAT JUARA MATEMATIKA (DOWNLOAD PNG & PDF)
        ===================================================================== */
     function openCertificateModal() {
       renderCertificateCanvas();
@@ -3995,7 +4215,7 @@
         banner.style.background = "rgba(239, 68, 68, 0.2)";
         banner.style.border = "2px solid #EF4444";
         banner.style.color = "#FECDD3";
-        banner.innerHTML = `⚡ Kumpulkan poin terlebih dahulu dengan menyelesaikan soal Bilangan & Aljabar Kelas 9 agar nilaimu tercatat di Sertifikat!`;
+        banner.innerHTML = `⚡ Kumpulkan poin terlebih dahulu dengan menjawab soal Matematika agar nilaimu tercatat di Sertifikat!`;
       }
 
       const certCanvas = document.getElementById('certificate-canvas');
@@ -4026,11 +4246,11 @@
       ctx.fillStyle = '#FBBF24';
       ctx.font = '900 42px Nunito, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('SERTIFIKAT PENGHARGAAN MATEMATIKA', w / 2, 125);
+      ctx.fillText('CERTIFICATE OF ACHIEVEMENT', w / 2, 125);
 
       ctx.fillStyle = '#94A3B8';
       ctx.font = '700 20px Nunito, sans-serif';
-      ctx.fillText('ROBLOX CERDAS 3D: MATEMATIKA KELAS 9 (BILANGAN & ALJABAR)', w / 2, 162);
+      ctx.fillText('ROBLOX CERDAS 3D: MATHEMATICS ADVENTURE (+, -, ×, ÷)', w / 2, 162);
 
       ctx.fillStyle = '#E2E8F0';
       ctx.font = '600 22px Nunito, sans-serif';
@@ -4047,9 +4267,9 @@
       ctx.lineTo(w / 2 + 260, 325);
       ctx.stroke();
 
-      const rankTitle = myRank === 1 ? "🏆 JUARA TERBAIK 1 OLIMPIADE BILANGAN & ALJABAR KELAS 9" : `🏅 PERINGKAT #${myRank} PETUALANG MATEMATIKA KELAS 9`;
+      const rankTitle = myRank === 1 ? "🏆 THE 1st CHAMPION OF MATHEMATICS (JUARA TERBAIK 1)" : `🏅 PERINGKAT #${myRank} PETUALANG MATEMATIKA TERBAIK`;
       ctx.fillStyle = '#FDE047';
-      ctx.font = '900 25px Nunito, sans-serif';
+      ctx.font = '900 26px Nunito, sans-serif';
       ctx.fillText(rankTitle, w / 2, 385);
 
       ctx.fillStyle = '#FFFFFF';
@@ -4058,8 +4278,8 @@
 
       ctx.fillStyle = '#CBD5E1';
       ctx.font = '600 18px Nunito, sans-serif';
-      ctx.fillText('Telah berhasil menguasai materi Bilangan Berpangkat (Eksponen), Bentuk Akar, Notasi Ilmiah,', w / 2, 485);
-      ctx.fillText('Pemfaktoran Aljabar, serta Persamaan & Fungsi Kuadrat Kelas 9 dalam dunia interaktif 3D.', w / 2, 512);
+      ctx.fillText('Telah berhasil menguasai materi Operasi Hitung Penjumlahan, Pengurangan, Perkalian,', w / 2, 485);
+      ctx.fillText('dan Pembagian Matematika dalam petualangan interaktif 3D.', w / 2, 512);
 
       const dateStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
       ctx.fillStyle = '#94A3B8';
@@ -4079,7 +4299,7 @@
       const certCanvas = document.getElementById('certificate-canvas');
       const link = document.createElement('a');
       const safeName = gameState.myName.replace(/[^a-z0-9]/gi, '_');
-      link.download = `Sertifikat_Matematika9_${safeName}.png`;
+      link.download = `Sertifikat_Matematika_${safeName}.png`;
       link.href = certCanvas.toDataURL('image/png');
       link.click();
       audio.playLevelUp();
@@ -4100,7 +4320,7 @@
           format: [1000, 700]
         });
         pdf.addImage(imgData, 'PNG', 0, 0, 1000, 700);
-        pdf.save(`Sertifikat_Matematika9_${safeName}.pdf`);
+        pdf.save(`Sertifikat_Matematika_${safeName}.pdf`);
         audio.playLevelUp();
         showToast("📄 Sertifikat PDF berhasil diunduh ke perangkatmu!", "🎓");
       } else {
@@ -4119,9 +4339,10 @@
 
     function finishQuiz() {
       clearInterval(quizSession.timerInterval);
+      document.getElementById('quiz-apersepsi-box').style.display = 'none';
       document.getElementById('quiz-question').style.display = 'none';
-      document.getElementById('btn-quiz-learn').style.display = 'none';
-      document.getElementById('quiz-learn-box').style.display = 'none';
+      document.getElementById('quiz-study-bar').style.display = 'none';
+      document.getElementById('quiz-study-card').style.display = 'none';
       document.getElementById('quiz-options').style.display = 'none';
       document.getElementById('quiz-explanation').style.display = 'none';
       document.getElementById('quiz-next-btn').style.display = 'none';
@@ -4158,7 +4379,7 @@
       [
         { id: "none", name: "Tanpa Aksesoris", icon: "👤" },
         { id: "cap", name: "Topi Petualang", icon: "🧢" },
-        { id: "glasses", name: "Kacamata Profesor", icon: "👓" }
+        { id: "glasses", name: "Kacamata Detektif", icon: "👓" }
       ].forEach(a => {
         const aCard = document.createElement('div');
         aCard.className = `wardrobe-item ${gameState.accessory === a.id ? 'active' : ''}`;
@@ -4178,7 +4399,8 @@
     function saveCustomQuestion() {
       const mapel = document.getElementById('teacher-mapel').value;
       const question = document.getElementById('teacher-q').value.trim();
-      const learnGuide = document.getElementById('teacher-learn').value.trim();
+      const apersepsiText = document.getElementById('teacher-apersepsi').value.trim();
+      const studyEx = document.getElementById('teacher-study').value.trim();
       const opt0 = document.getElementById('teacher-opt0').value.trim();
       const opt1 = document.getElementById('teacher-opt1').value.trim();
       const opt2 = document.getElementById('teacher-opt2').value.trim();
@@ -4192,15 +4414,17 @@
       }
 
       gameState.curriculum[mapel].quizzes.push({
+        apersepsi: apersepsiText || "Perhatikan konteks cerita dan ilustrasi berikut sebelum menyelesaikan perhitungan matematika.",
+        svg: createMathIllustrationSVG(mapel, "Soal Guru", "📐"),
         q: question,
-        learn: learnGuide || "Perhatikan rumus dasar pada materi pos ini dan kerjakan langkah demi langkah.",
+        studyExample: studyEx || "🎯 Contoh Serupa: Pecah angka menjadi puluhan dan satuan agar lebih mudah dihitung langkah demi langkah!",
         options: [opt0, opt1, opt2, opt3],
         answer: correct,
         explain: explain
       });
       saveState();
       audio.playCorrect();
-      showToast("Soal Matematika beserta Contoh Pelajari berhasil ditambahkan!", "📚");
+      showToast("Soal Matematika beserta Apersepsi & Contoh Pelajari berhasil ditambahkan!", "📚");
       closeModal('modal-teacher');
     }
 
@@ -4211,6 +4435,7 @@
         document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
       }
       if (quizSession.timerInterval) clearInterval(quizSession.timerInterval);
+      if (scrollSession && scrollSession.timerInterval) clearInterval(scrollSession.timerInterval);
     }
 
     /* =====================================================================
@@ -4441,7 +4666,7 @@
     }
 
     if ('BroadcastChannel' in window) {
-      localChannel = new BroadcastChannel('roblox_math9_multiplayer');
+      localChannel = new BroadcastChannel('roblox_math_multiplayer');
       localChannel.onmessage = (ev) => {
         const data = ev.data;
         const gs = window.gameState;
@@ -4469,7 +4694,7 @@
       if (typeof mqtt === 'undefined') return;
       try {
         mqttClient = mqtt.connect('wss://broker.emqx.io:8084/mqtt', {
-          clientId: 'rc3d_m9_' + Math.random().toString(16).substring(2, 10),
+          clientId: 'rc3d_math_' + Math.random().toString(16).substring(2, 10),
           clean: true,
           connectTimeout: 4000,
           reconnectPeriod: 3000
@@ -4477,7 +4702,7 @@
 
         mqttClient.on('connect', () => {
           updateNetBadge("📡 Global Live Sync", "#34D399");
-          mqttClient.subscribe('roblox_cerdas_3d_math9/school_official_code');
+          mqttClient.subscribe('roblox_cerdas_3d_math/school_official_code');
           if (window.gameState && window.gameState.hasJoinedGame && window.gameState.playMode === 'team') {
             subscribeMqttRoom(window.gameState.roomCode);
           }
@@ -4489,7 +4714,7 @@
             const gs = window.gameState;
             if (!data || !gs) return;
 
-            if (topic === 'roblox_cerdas_3d_math9/school_official_code' && data.officialRoomCode) {
+            if (topic === 'roblox_cerdas_3d_math/school_official_code' && data.officialRoomCode) {
               applyIncomingOfficialCode(data.officialRoomCode);
               return;
             }
@@ -4510,8 +4735,8 @@
 
     function subscribeMqttRoom(roomCode) {
       if (!mqttClient || !mqttClient.connected) return;
-      const cleanCode = (roomCode || 'MATEMATIKA9').toUpperCase().replace(/[^A-Z0-9]/gi, '');
-      const newTopic = `roblox_cerdas_3d_math9/room_${cleanCode}`;
+      const cleanCode = (roomCode || 'MATEMATIKA1').toUpperCase().replace(/[^A-Z0-9]/gi, '');
+      const newTopic = `roblox_cerdas_3d_math/room_${cleanCode}`;
       if (currentMqttTopic && currentMqttTopic !== newTopic) {
         mqttClient.unsubscribe(currentMqttTopic);
       }
@@ -4527,8 +4752,8 @@
 
     function connectPeerJsRoomMesh(roomCode) {
       if (typeof Peer === 'undefined') return;
-      const cleanCode = (roomCode || 'MATEMATIKA9').toUpperCase().replace(/[^A-Z0-9]/gi, '');
-      const hostPeerId = `rc3d_math9_room_${cleanCode}`;
+      const cleanCode = (roomCode || 'MATEMATIKA1').toUpperCase().replace(/[^A-Z0-9]/gi, '');
+      const hostPeerId = `rc3d_math_room_${cleanCode}`;
 
       if (peerInstance) {
         try { peerInstance.destroy(); } catch (e) {}
@@ -4646,7 +4871,7 @@
 
     function listenOfficialRoomConfig() {
       if (!db || !currentUser) return;
-      const configDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'school_settings', 'active_room');
+      const configDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'school_settings', 'active_room_math');
       onSnapshot(configDocRef, (snap) => {
         if (snap.exists()) {
           const data = snap.data();
@@ -4663,14 +4888,14 @@
         localChannel.postMessage({ type: 'ROOM_CODE_CHANGED', officialRoomCode: cleanCode });
       }
       if (mqttClient && mqttClient.connected) {
-        mqttClient.publish('roblox_cerdas_3d_math9/school_official_code', JSON.stringify({
+        mqttClient.publish('roblox_cerdas_3d_math/school_official_code', JSON.stringify({
           officialRoomCode: cleanCode,
           updatedAt: Date.now()
         }), { retain: true });
       }
       if (!db || !currentUser) return;
       try {
-        const configDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'school_settings', 'active_room');
+        const configDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'school_settings', 'active_room_math');
         await setDoc(configDocRef, {
           officialRoomCode: cleanCode,
           updatedBy: window.gameState ? window.gameState.myId : currentUser.uid,
@@ -4686,7 +4911,7 @@
       const pg = window.playerGroup;
       if (!gs || !gs.hasJoinedGame || gs.playMode === 'personal' || !gs.roomCode || !pg) return;
 
-      const cleanCode = gs.roomCode.toUpperCase().replace(/[^A-Z0-9]/gi, '') || 'MATEMATIKA9';
+      const cleanCode = gs.roomCode.toUpperCase().replace(/[^A-Z0-9]/gi, '') || 'MATEMATIKA1';
       const px = Math.round(pg.position.x * 10) / 10;
       const pz = Math.round(pg.position.z * 10) / 10;
       const prot = Math.round(pg.rotation.y * 100) / 100;
@@ -4722,7 +4947,7 @@
       }
 
       if (mqttClient && mqttClient.connected) {
-        mqttClient.publish(`roblox_cerdas_3d_math9/room_${cleanCode}`, JSON.stringify(packet));
+        mqttClient.publish(`roblox_cerdas_3d_math/room_${cleanCode}`, JSON.stringify(packet));
       }
 
       if (clientToHostConn && clientToHostConn.open) {
@@ -4738,7 +4963,7 @@
 
       if (!db || !currentUser) return;
       try {
-        const colName = `room_${cleanCode}`;
+        const colName = `math_room_${cleanCode}`;
         const playerDocRef = doc(db, 'artifacts', appId, 'public', 'data', colName, gs.myId);
         await setDoc(playerDocRef, payload, { merge: true });
       } catch (e) {}
@@ -4748,7 +4973,7 @@
       const gs = window.gameState;
       if (!gs || gs.playMode === 'personal') return;
 
-      const cleanCode = (roomCode || 'MATEMATIKA9').toUpperCase().replace(/[^A-Z0-9]/gi, '');
+      const cleanCode = (roomCode || 'MATEMATIKA1').toUpperCase().replace(/[^A-Z0-9]/gi, '');
       gs.roomCode = cleanCode;
       cloudPlayersCache = {};
       if (window.syncRemotePlayersFromCloud) {
@@ -4763,7 +4988,7 @@
       if (!db || !currentUser) return;
       if (unsubscribeRoom) unsubscribeRoom();
 
-      const colName = `room_${cleanCode}`;
+      const colName = `math_room_${cleanCode}`;
       const roomColRef = collection(db, 'artifacts', appId, 'public', 'data', colName);
 
       try {
